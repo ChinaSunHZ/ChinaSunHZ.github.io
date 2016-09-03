@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Github OAuth 登录的实现流程最近在做 GitHub 相关的东西，需要一个登录的功能，所以总结下在实现过程中查的文档以及相关资料。把步骤以及一些小坑记录下来。
+GitHub 认证1. 申请认证首先申请在 GitHub 申请一个 “Developer applications” 的权限。地址">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Spencer">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Github OAuth 登录使用流程"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="给立乐*"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Github OAuth 登录使用流程 - 给立乐*</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-65158169-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">给立乐* Android 开发者</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/ChinaSunHZ/">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Github OAuth 登录使用流程</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2016-05-14
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/Github/">#Github</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="Github-OAuth-登录的实现流程"><a href="#Github-OAuth-登录的实现流程" class="headerlink" title="Github OAuth 登录的实现流程"></a>Github OAuth 登录的实现流程</h2><p>最近在做 GitHub 相关的东西，需要一个登录的功能，所以总结下在实现过程中查的文档以及相关资料。把步骤以及一些小坑记录下来。</p>
+<h3 id="GitHub-认证"><a href="#GitHub-认证" class="headerlink" title="GitHub 认证"></a>GitHub 认证</h3><h4 id="1-申请认证"><a href="#1-申请认证" class="headerlink" title="1. 申请认证"></a>1. 申请认证</h4><p>首先申请在 GitHub 申请一个 “Developer applications” 的权限。<br>地址：<a href="https://github.com/settings/developers" target="_blank" rel="external">Developer application</a></p>
+<h4 id="2-填写信息"><a href="#2-填写信息" class="headerlink" title="2. 填写信息"></a>2. 填写信息</h4><p>填写好相关信息 “Application name”, “Homepage URL”, “Application descriptioin”, <strong>“Authorization callback URL”</strong>。<br>Callback URL 前期可以随便填，后面等 Server 部署成功后，可以更改。</p>
+<h4 id="3-完成-GitHub-部分"><a href="#3-完成-GitHub-部分" class="headerlink" title="3. 完成 GitHub 部分"></a>3. 完成 GitHub 部分</h4><p>全部都填写完成并保存好 “Client ID” , “Client Secret” 后，开始下面步骤。</p>
+<hr>
+<h3 id="在本地安装-Heroku-工具"><a href="#在本地安装-Heroku-工具" class="headerlink" title="在本地安装 Heroku 工具"></a>在本地安装 Heroku 工具</h3><p>工具地址：<a href="https://toolbelt.heroku.com/" target="_blank" rel="external">heroku toolbelt</a><br>下载成功后，安装好。<br>在 <code>Terminal</code> 中输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ heroku login</div></pre></td></tr></table></figure></p>
+<p>输入用户名和密码之后，会提示登陆成功。<br>本地工具就安装好了。</p>
+<hr>
+<h3 id="在-Heroku-创建-Application"><a href="#在-Heroku-创建-Application" class="headerlink" title="在 Heroku 创建 Application"></a>在 Heroku 创建 Application</h3><p>打开网页版 <code>Heroku</code> ，打开后右上角有一个 <code>+ (加号)</code> ，点击后弹出浮窗，然后继续点击 <code>&quot;create new app&quot;</code> ，在 <code>&quot;App Name(optional)&quot;</code> 中输入 app 的名字，然后点击 <code>&quot;Create App&quot;</code>。<br>应用创建就成功了。</p>
+<hr>
+<h3 id="将应用-Clone-到本地"><a href="#将应用-Clone-到本地" class="headerlink" title="将应用 Clone 到本地"></a>将应用 Clone 到本地</h3><p>应用创建成功后，应该会自动跳转到 app 的 <code>&quot;Deploy&quot;</code> tab 中。页面下方有操作提示。</p>
+<p>具体操作为：将应用 Clone 到本地，并进入本地项目目录。（命令如下）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ heroku git:clone -a [刚刚创建的应用名]</div><div class="line">$ cd [刚刚创建的应用名]</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="在本地配置-Ruby-的-WebServer-环境"><a href="#在本地配置-Ruby-的-WebServer-环境" class="headerlink" title="在本地配置 Ruby 的 WebServer 环境"></a>在本地配置 Ruby 的 WebServer 环境</h3><p>文档地址：<a href="http://www.sinatrarb.com/intro.html" target="_blank" rel="external">Sinatra</a></p>
+<h4 id="安装-Sinatra"><a href="#安装-Sinatra" class="headerlink" title="安装 Sinatra"></a>安装 Sinatra</h4><p>在 <code>Terminal</code> 中执行以下语句即可安装。(有可能因为网络等问题很慢或失败，多等等或重新执行命令就好了。如果提示需要先安装其他东西，就按照提示安装，再重新执行该命令。)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gem install sinatra</div></pre></td></tr></table></figure></p>
+<h4 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h4><p>先简单写一个小例子来看下</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># HelloWorld.rb</span></div><div class="line"><span class="keyword">require</span> <span class="string">'sinatra'</span></div><div class="line"></div><div class="line">get <span class="string">'/'</span> <span class="keyword">do</span></div><div class="line">  <span class="string">"Hello World!"</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><p>编写完成后，把它运行起来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ruby HelloWorld.rb</div></pre></td></tr></table></figure>
+<p>Sinatra 的默认端口是 <code>4567</code><br>所以直接在浏览器中打开 <a href="http://localhost:4567" target="_blank" rel="external">http://localhost:4567</a> 就能够看到我们熟悉的 “Hello World” 了。</p>
+<h4 id="停止运行"><a href="#停止运行" class="headerlink" title="停止运行"></a>停止运行</h4><p>停止运行就在 Terminal 中直接按 <code>control + c</code> 就可以了。</p>
+<hr>
+<h3 id="Heroku-Ruby-部署-Server"><a href="#Heroku-Ruby-部署-Server" class="headerlink" title="Heroku + Ruby 部署 Server"></a>Heroku + Ruby 部署 Server</h3><p>部署和编写 Server 使用 Ruby 语言进行。（用过之后发现 Ruby 做 Web 相关的东西真是方便。。）</p>
+<h4 id="使用-GitHub-中已有的开源项目"><a href="#使用-GitHub-中已有的开源项目" class="headerlink" title="使用 GitHub 中已有的开源项目"></a>使用 GitHub 中已有的开源项目</h4><p>项目地址：<a href="https://github.com/github/platform-samples/tree/master/api/ruby/basics-of-authentication" target="_blank" rel="external">github/pltform-samples/…/…/basics-of-authentication</a><br>将项目 Clone 到本地。</p>
+<ol>
+<li>将 Clone 下来的文件，复制到刚刚创建的本地项目文件夹中。<br>路径为：<code>/platform-samples/api/ruby/basics-of-authentication/</code></li>
+</ol>
+<h4 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h4><ol>
+<li><p>在本地项目目录中打开 <code>advanced_server.rb</code><br>可以看到 “GH_BASIC_CLIENT_ID” 和 “GH_BASIC_SECRET_ID”，这两个东西对应到 GitHub 上，就是刚刚申请 “Developer application” 时，成功后的返回的结果。<br><code>advanced_server.rb</code> 中的提示说，不要把 “CLIENT_ID” 和 “SECRET_ID” hard-coded 到这里。说推荐配置到环境变量中，那咱就搞起来。</p>
+</li>
+<li><p>将 “CLIENT_ID” 和 “SECRET_ID” 配置到 Heroku 的环境变量中。<br>文档地址：<a href="https://devcenter.heroku.com/articles/config-vars#setting-up-config-vars-for-a-deployed-application" target="_blank" rel="external">Setting up config vars for a deployed application</a><br>在本地项目目录中执行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 设置 CLIENT_ID</div><div class="line">$ heroku config:set GH_BASIC_CLIENT_ID=xxxxxxx</div><div class="line"></div><div class="line"># 设置 SECRET_ID</div><div class="line">$ heroku config:set GH_BASIC_SECRET_ID=zzzzzzz</div><div class="line"></div><div class="line"># 打印出设置的变量</div><div class="line">$ heroku config</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>环境变量配置完成。</p>
+<h4 id="添加-Config-ru-文件"><a href="#添加-Config-ru-文件" class="headerlink" title="添加 Config.ru 文件"></a>添加 Config.ru 文件</h4><ol>
+<li>在本地项目目录中添加 <code>Config.ru</code> 文件。<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'./advanced_server'</span></div><div class="line">run Sinatra::Application</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="安装-Server-所需依赖"><a href="#安装-Server-所需依赖" class="headerlink" title="安装 Server 所需依赖"></a>安装 Server 所需依赖</h4><p><code>Config.ru</code> 文件编写并保存完后，现在需要安装 Server 所需的依赖。</p>
+<p>在本地项目目录执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bundle install</div></pre></td></tr></table></figure>
+<p>中间可能会报错，提示需要先安装其他依赖，按照提示安装后，重新运行此命令即可。</p>
+<h4 id="推送本地修改到-Heroku"><a href="#推送本地修改到-Heroku" class="headerlink" title="推送本地修改到 Heroku"></a>推送本地修改到 Heroku</h4><p>执行 Git 命令进行推送。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ git add .</div><div class="line"></div><div class="line">$ git commit -m&quot;init&quot;</div><div class="line"></div><div class="line"># remote name 是 heroku</div><div class="line">$ git push heroku master</div><div class="line"></div><div class="line"># 在浏览器中打开项目的 root url</div><div class="line">$ heroku open</div></pre></td></tr></table></figure>
+<p>这时候在浏览器中可以看到项目的 web page 。</p>
+<h4 id="如何定位错误，查看-Log"><a href="#如何定位错误，查看-Log" class="headerlink" title="如何定位错误，查看 Log"></a>如何定位错误，查看 Log</h4><h5 id="线上查看-log"><a href="#线上查看-log" class="headerlink" title="线上查看 log"></a>线上查看 log</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ heroku logs</div></pre></td></tr></table></figure>
+<p>这个命令可以直接查看线上运行时 log 。</p>
+<h5 id="在本地运行，查看-log。"><a href="#在本地运行，查看-log。" class="headerlink" title="在本地运行，查看 log。"></a>在本地运行，查看 log。</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ruby advanced_server.rb</div></pre></td></tr></table></figure>
+<p>运行起来后，在本地访问 <a href="http://localhost:4567" target="_blank" rel="external">http://localhost:4567</a> 地址。如果出错，<code>Terminal</code> 中和网页中都能够直接看到错误。</p>
+<p><strong>根据错误查找对应解决办法即可。</strong></p>
+<hr>
+<h3 id="参考文档："><a href="#参考文档：" class="headerlink" title="参考文档："></a>参考文档：</h3><p><a href="https://developer.github.com/v3/oauth/#non-web-application-flow" target="_blank" rel="external">GitHub Developer OAuth - non-web-application-flow</a><br><a href="https://devcenter.heroku.com/articles/getting-started-with-ruby#introduction" target="_blank" rel="external">Getting Started with Ruby on Heroku</a><br><a href="https://devcenter.heroku.com/articles/rack#camping" target="_blank" rel="external">Deploying Rack-based Apps</a><br><a href="http://www.sinatrarb.com/intro.html" target="_blank" rel="external">Sinatra Getting Started</a><br><a href="https://github.com/sinatra/sinatra/issues/951" target="_blank" rel="external">NoMethodError: undefined method `join’ for #<string:0x007f62c3e6fb90> - Rack 1.6.0</string:0x007f62c3e6fb90></a><br><a href="http://www.runoob.com/ruby/ruby-environment-variables.html" target="_blank" rel="external">Ruby 环境变量</a><br><a href="https://devcenter.heroku.com/articles/config-vars#setting-up-config-vars-for-a-deployed-application" target="_blank" rel="external">Setting up config vars for a deployed application</a></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                   
+                        <li>
+                            <a href="https://github.com/ChinaSunHZ/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="http://weibo.com/shz272119494" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://twitter.com/ChinaSunHZ" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://www.facebook.com/ChinaSunHZ" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://cn.linkedin.com/in/浩臻-孙-0208ba94" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="mailto:China.SunhZ@Gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <!--
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'china_sunhz';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>
