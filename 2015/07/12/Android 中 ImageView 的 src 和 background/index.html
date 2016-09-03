@@ -10,14 +10,9 @@
 
     <!--Description-->
     
-        <meta name="description" content="####imageView有两个显示图片的属性,作用分别是什么呢?
+        <meta name="description" content="ImageView 有两个显示图片的属性，作用分别是什么呢？如果两个属性同时存在，用户会看到 src 属性中设置的背景，但同时 background 设置的背景也存在，只是被 src 属性挡住了，在后面。所以 src 相当于是前景，background 相当于是背景。
 
-
-src
-background
-
-
-如果两个属性同时存在,用户会看到 src 属性中设置的背景. 但同时 background 设置的背景也存在, 只是被 src 属性挡住了,在后面.src 等于是前景, background 等">
+怎么用 Java 代码来动态">
     
 
     <!--Author-->
@@ -191,26 +186,15 @@ background
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>####imageView有两个显示图片的属性,作用分别是什么呢?</p>
-<blockquote>
-<ul>
-<li>src</li>
-<li>background</li>
-</ul>
-</blockquote>
-<p>如果两个属性同时存在,用户会看到 src 属性中设置的背景. 但同时 background 设置的背景也存在, 只是被 src 属性挡住了,在后面.<br>src 等于是前景, background 等于是背景.</p>
-<p>####怎么用 java 代码来动态改变这两种属性的值?</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//src : </span></div><div class="line">	imageView.setImageDrawable(<span class="keyword">this</span>.getResources().getDrawable((R.drawable.ic_launcher)));</div><div class="line"></div><div class="line"><span class="comment">//background : </span></div><div class="line">	imageView.setBackgroundResource(android.R.color.background_dark);</div></pre></td></tr></table></figure>
-<p>####ImageView 中 XML 属性 src 和 background 的区别: </p>
-<p>background 会根据 ImageView 组件给定的长宽进行拉伸, 而 src 就存放的是原图的大小, 不会进行拉伸。src 是图片内容（前景）, bg 是背景, 可以同时使用。</p>
-<p>此外: scaleType 只对 src 起作用；bg 可设置透明度, 比如在 ImageView 中就可以用 android:scaleType 控制图片的缩放方式, 示例代码如下: </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ImageView</span> <span class="attr">android:id</span>=<span class="string">"@+id/img"</span> </span></div><div class="line">	<span class="attr">android:src</span>=<span class="string">"@drawable/logo"</span></div><div class="line">	<span class="attr">android:scaleType</span>=<span class="string">"centerInside"</span></div><div class="line">	<span class="attr">android:layout_width</span>=<span class="string">"60dip"</span></div><div class="line">	<span class="attr">android:layout_height</span>=<span class="string">"60dip"</span></div><div class="line">	<span class="attr">android:layout_centerVertical</span>=<span class="string">"true"</span>/&gt;</div></pre></td></tr></table></figure>
-<p>说明: centerInside 表示按比例缩放图片, 使得图片长 (宽)的小于等于视图的相应维度。</p>
-<p>####注意: 控制的图片为资源而不是背景.</p>
-<p>layout 中设置应该:  android:src=”@drawable/logo”</p>
-<p>而不是 android:background=”@drawable/logo” </p>
-<p>代码设置应该是: imgView.setImageResource(R.drawable.*); </p>
-<p>而不是 imgView.setBackgroundResource(R.drawable.*); </p>
+                <h3 id="ImageView-有两个显示图片的属性，作用分别是什么呢？"><a href="#ImageView-有两个显示图片的属性，作用分别是什么呢？" class="headerlink" title="ImageView 有两个显示图片的属性，作用分别是什么呢？"></a>ImageView 有两个显示图片的属性，作用分别是什么呢？</h3><p>如果两个属性同时存在，用户会看到 <code>src</code> 属性中设置的背景，但同时 <code>background</code> 设置的背景也存在，只是被 <code>src</code> 属性挡住了，在后面。<br>所以 <code>src</code> 相当于是前景，<code>background</code> 相当于是背景。</p>
+<hr>
+<h3 id="怎么用-Java-代码来动态改变这两种属性的值"><a href="#怎么用-Java-代码来动态改变这两种属性的值" class="headerlink" title="怎么用 Java 代码来动态改变这两种属性的值?"></a>怎么用 Java 代码来动态改变这两种属性的值?</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src : </span></div><div class="line">imageView.setImageDrawable(<span class="keyword">this</span>.getResources().getDrawable((R.drawable.ic_launcher)));</div><div class="line"></div><div class="line"><span class="comment">// background : </span></div><div class="line">imageView.setBackgroundResource(android.R.color.background_dark);</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="ImageView-中-XML-属性-src-和-background-的区别："><a href="#ImageView-中-XML-属性-src-和-background-的区别：" class="headerlink" title="ImageView 中 XML 属性 src 和 background 的区别："></a>ImageView 中 XML 属性 src 和 background 的区别：</h3><p>background 会根据 ImageView 组件给定的长宽进行拉伸，而 src 就存放的是原图的大小，不会进行拉伸。src 是图片内容（前景），background 是背景，两者可以同时使用。</p>
+<hr>
+<p>此外：<code>scaleType 只对 src 起作用</code>，background 可设置透明度。</p>
+<p>layout 中设置应该是：<code>android:src=&quot;@drawable/logo&quot;</code><br>而不是：<code>android:background=&quot;@drawable/logo&quot;</code></p>
+<p>代码设置应该是：<code>imageView.setImageResource(R.drawable.logo);</code><br>而不是：<code>imageView.setBackgroundResource(R.drawable.logo);</code></p>
 
 
                 
@@ -221,7 +205,7 @@ background
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     
     <hr />
-    <h3>Comments:</h3>
+    <h3>Kommentare:</h3>
     <div id="disqus_thread">
         <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
