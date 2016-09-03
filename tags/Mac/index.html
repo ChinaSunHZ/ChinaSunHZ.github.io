@@ -10,15 +10,6 @@
 
     <!--Description-->
     
-        <meta name="description" content="####imageView有两个显示图片的属性,作用分别是什么呢?
-
-
-src
-background
-
-
-如果两个属性同时存在,用户会看到 src 属性中设置的背景. 但同时 background 设置的背景也存在, 只是被 src 属性挡住了,在后面.src 等于是前景, background 等">
-    
 
     <!--Author-->
     
@@ -27,7 +18,7 @@ background
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="android 中 imageView 的 src 和 background"/>
+        <meta property="og:title" content="Hexo"/>
     
 
     <!--Open Graph Description-->
@@ -38,7 +29,7 @@ background
 
     <!--Type page-->
     
-        <meta property="og:type" content="article" />
+        <meta property="og:type" content="website" />
     
 
     <!--Page Cover-->
@@ -49,7 +40,7 @@ background
 
     <!-- Title -->
     
-    <title>android 中 imageView 的 src 和 background - Hexo</title>
+    <title>Mac - Hexo</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -132,88 +123,63 @@ background
 </nav>
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<!-- Set your background image for this header in your post front-matter: cover -->
+    
 
+<!-- Page Header -->
+<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <h1>android 中 imageView 的 src 和 background</h1>
-                    
-                    <span class="meta">
-                        <!-- Date and Author -->
-                        
-                        2015-07-12
-                    </span>
+                <div class="site-heading">
+                    <h1>#Mac</h1>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-
-            <!-- Tags and categories -->
-           
-                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
-                    
-                        
-
-<a href="/categories/android/">android</a>
-
-                    
-                </div>
-                <div class="col-lg-4 col-md-5 post-categories">
-                    
-                </div>
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             
-
-            <!-- Gallery -->
+                <div class="post-preview">
+    <a href="/2015/07/14/解决 Mac 下配置环境变量在 zsh 中无效的问题/">
+        <h1 class="post-title archive">
+            解决 Mac 下配置环境变量在 zsh 中无效的问题
+        </h1>
+    </a>
+    <p class="post-meta archive">
+        <!-- Date and Author -->
+        
+        2015-07-14
+    </p>
+</div>
             
-
-            <!-- Post Main Content -->
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>####imageView有两个显示图片的属性,作用分别是什么呢?</p>
-<blockquote>
-<ul>
-<li>src</li>
-<li>background</li>
+                <div class="post-preview">
+    <a href="/2015/06/30/Mac 下删除目录中所有的指定文件/">
+        <h1 class="post-title archive">
+            Mac 下删除目录中所有的指定文件
+        </h1>
+    </a>
+    <p class="post-meta archive">
+        <!-- Date and Author -->
+        
+        2015-06-30
+    </p>
+</div>
+            
+            <div class="archive-before-pagination"></div>
+            <ul class="pager">
+    
+    
 </ul>
-</blockquote>
-<p>如果两个属性同时存在,用户会看到 src 属性中设置的背景. 但同时 background 设置的背景也存在, 只是被 src 属性挡住了,在后面.<br>src 等于是前景, background 等于是背景.</p>
-<p>####怎么用 java 代码来动态改变这两种属性的值?</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//src : </span></div><div class="line">	imageView.setImageDrawable(<span class="keyword">this</span>.getResources().getDrawable((R.drawable.ic_launcher)));</div><div class="line"></div><div class="line"><span class="comment">//background : </span></div><div class="line">	imageView.setBackgroundResource(android.R.color.background_dark);</div></pre></td></tr></table></figure>
-<p>####ImageView 中 XML 属性 src 和 background 的区别: </p>
-<p>background 会根据 ImageView 组件给定的长宽进行拉伸, 而 src 就存放的是原图的大小, 不会进行拉伸。src 是图片内容（前景）, bg 是背景, 可以同时使用。</p>
-<p>此外: scaleType 只对 src 起作用；bg 可设置透明度, 比如在 ImageView 中就可以用 android:scaleType 控制图片的缩放方式, 示例代码如下: </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ImageView</span> <span class="attr">android:id</span>=<span class="string">"@+id/img"</span> </span></div><div class="line">	<span class="attr">android:src</span>=<span class="string">"@drawable/logo"</span></div><div class="line">	<span class="attr">android:scaleType</span>=<span class="string">"centerInside"</span></div><div class="line">	<span class="attr">android:layout_width</span>=<span class="string">"60dip"</span></div><div class="line">	<span class="attr">android:layout_height</span>=<span class="string">"60dip"</span></div><div class="line">	<span class="attr">android:layout_centerVertical</span>=<span class="string">"true"</span>/&gt;</div></pre></td></tr></table></figure>
-<p>说明: centerInside 表示按比例缩放图片, 使得图片长 (宽)的小于等于视图的相应维度。</p>
-<p>####注意: 控制的图片为资源而不是背景.</p>
-<p>layout 中设置应该:  android:src=”@drawable/logo”</p>
-<p>而不是 android:background=”@drawable/logo” </p>
-<p>代码设置应该是: imgView.setImageResource(R.drawable.*); </p>
-<p>而不是 imgView.setBackgroundResource(R.drawable.*); </p>
-
-
-                
-            </div>
-
-            <!-- Comments -->
-            
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    
-
-
-                </div>
-            
         </div>
     </div>
-</article>
+</div>
+
+
 
     <!-- Footer -->
     <hr />

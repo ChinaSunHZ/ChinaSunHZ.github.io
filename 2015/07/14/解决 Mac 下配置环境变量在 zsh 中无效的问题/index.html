@@ -10,9 +10,8 @@
 
     <!--Description-->
     
-        <meta name="description" content="想要从 A activity -&amp;gt; B activity 默认效果,有的不太好看,所以需要有定制需求.
-这里就用到了 overridePendingTransition();
-但是 : 使用 overridePendingTransition(R.anim.in, R.anim.out); 过">
+        <meta name="description" content="在配置 gradle 的时候, 发现在 /etc/profiles 中设置了环境变量后, 还是不能在 zsh 中使用. 但在 Terminal 中可以正常使用. 后来发现是因为没有在 .zshrc 中配置.
+在终端中输入:  cat ~/.zshrc以此来查看 .zshrc 文件, 找到里面的 “ ">
     
 
     <!--Author-->
@@ -22,7 +21,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="使用activity切换动画时 A-&gt;B A黑屏的解决方法"/>
+        <meta property="og:title" content="解决 Mac 下配置环境变量在 zsh 中无效的问题"/>
     
 
     <!--Open Graph Description-->
@@ -44,7 +43,7 @@
 
     <!-- Title -->
     
-    <title>使用activity切换动画时 A-&gt;B A黑屏的解决方法 - Hexo</title>
+    <title>解决 Mac 下配置环境变量在 zsh 中无效的问题 - Hexo</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -135,7 +134,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>使用activity切换动画时 A->B A黑屏的解决方法</h1>
+                    <h1>解决 Mac 下配置环境变量在 zsh 中无效的问题</h1>
                     
                     <span class="meta">
                         <!-- Date and Author -->
@@ -159,7 +158,9 @@
                     
                         
 
-<a href="/categories/android/">android</a>
+
+<a href="/tags/Mac/">#Mac</a>
+
 
                     
                 </div>
@@ -173,14 +174,10 @@
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>想要从 A activity -&gt; B activity 默认效果,有的不太好看,所以需要有定制需求.</p>
-<p>这里就用到了 overridePendingTransition();</p>
-<p>但是 : 使用 overridePendingTransition(R.anim.in, R.anim.out); 过场效果时. 可能会出现一个问题, B activity 出现的时候, A activity 是黑屏的, 看起来非常丑.</p>
-<p>这个问题的解决办法为:<br>在style中,添加一句<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:windowIsTranslucent"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>将这个style设置给 application 或者 全部的 activity ,也可以设置成单独某 activity 的, 将 activity 变成透明的. </p>
-<p>这样就解决了.</p>
-<p>####注意<br>要求Activity主题添加”android:windowIsTranslucent”才能达到Acitivity透明效果。</p>
-<p>偶然发现使用此属性之后Acitivity的生命周期有影响，Activity A启动之后，启动Activity B，Activity A的onStop不会被调用。</p>
+                <p>在配置 gradle 的时候, 发现在 /etc/profiles 中设置了环境变量后, 还是不能在 zsh 中使用. 但在 Terminal 中可以正常使用. 后来发现是因为没有在 .zshrc 中配置.</p>
+<p>在终端中输入:  cat ~/.zshrc<br>以此来查看 .zshrc 文件, 找到里面的 “ # User configuration “ 部分.<br>可以看到当前 zsh 支持的所有本地已配置环境变量.</p>
+<p>在 export PATH=”XXXX” 里面追加一条想要配置的环境变量路径.</p>
+<p>重启 item2 即可.</p>
 
 
                 

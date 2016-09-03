@@ -10,10 +10,10 @@
 
     <!--Description-->
     
-        <meta name="description" content="###警告: 对项目目录进行操作时, 一定要做好备份!!!
-通过下面这个方式可以成功删除(以尝试)
-1sudo find /Users/SunHZ/Documents -name .svn |xargs rm -rf
-其中: “/Users/SunHZ/Documents” 是自己的项目路径, “.">
+        <meta name="description" content="公式 : int A = number * 255 / 100;  
+A : 需要填写在 ARGB 中 A 位置上的十六进制字符的十进制形式.
+number : 0 - 100 百分比 , 比如需要93%透明 , number 就是93
+公式使用方式 : 用计算器十进制计算 , 算出十进制的结果值A">
     
 
     <!--Author-->
@@ -23,7 +23,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="mac 下删除目录中所有的指定文件"/>
+        <meta property="og:title" content="手动计算 ARGB 中的 A 值"/>
     
 
     <!--Open Graph Description-->
@@ -45,7 +45,7 @@
 
     <!-- Title -->
     
-    <title>mac 下删除目录中所有的指定文件 - Hexo</title>
+    <title>手动计算 ARGB 中的 A 值 - Hexo</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -136,12 +136,12 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>mac 下删除目录中所有的指定文件</h1>
+                    <h1>手动计算 ARGB 中的 A 值</h1>
                     
                     <span class="meta">
                         <!-- Date and Author -->
                         
-                        2015-06-30
+                        2015-07-14
                     </span>
                 </div>
             </div>
@@ -160,7 +160,9 @@
                     
                         
 
-<a href="/categories/mac/">mac</a>
+
+<a href="/tags/Android/">#Android</a>
+
 
                     
                 </div>
@@ -174,12 +176,17 @@
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>###警告: 对项目目录进行操作时, 一定要做好备份!!!</p>
-<p>通过下面这个方式可以成功删除(以尝试)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo find /Users/SunHZ/Documents -name .svn |xargs rm -rf</div></pre></td></tr></table></figure>
-<p>其中: “/Users/SunHZ/Documents” 是自己的项目路径, “.svn” 是要待删除的文件</p>
-<p>删除其他文件时也可稍作修改复用此命令</p>
-<p>###警告: 对项目目录进行操作时, 一定要做好备份!!!</p>
+                <p>公式 : int A = number * 255 / 100;  </p>
+<p>A : 需要填写在 ARGB 中 A 位置上的十六进制字符的十进制形式.</p>
+<p>number : 0 - 100 百分比 , 比如需要93%透明 , number 就是93</p>
+<p>公式使用方式 : 用计算器十进制计算 , 算出十进制的结果值A , 将十进制的结果 A 转换成十六进制</p>
+<p>最终就是A位置上需要填写的值</p>
+<p>例如 : 百分之五十三透明度 白色</p>
+<p>53 <em> 255 = 13515 (number </em> 255)</p>
+<p>13515 / 100 = 135 (number * 255 / 100)</p>
+<p>135 -&gt; 十六进制 = 0x87 (转换为十六进制)</p>
+<p>ARGB中的A值 , 就是87.</p>
+<p>百分之五十三透明度 白色 , 就是#87FFFFFF</p>
 
 
                 
