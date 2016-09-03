@@ -10,6 +10,13 @@
 
     <!--Description-->
     
+        <meta name="description" content="烂代码、脏代码会引起怎样的状况？会使工作效率严重降低！
+本来数小时就能够解决的问题，却花了数个星期解决。
+只想修改一行代码解决某问题，但却发现涉及数十上百各模块。
+糟糕的代码引发混乱！别人修改糟糕的代码时，往往会越改越烂，就像『破窗理论』。
+
+什么是整洁代码？C++ 语言的发明者 Bjarne St">
+    
 
     <!--Author-->
     
@@ -18,7 +25,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="给立乐*"/>
+        <meta property="og:title" content="Clean Code - Chapter 1  整洁代码"/>
     
 
     <!--Open Graph Description-->
@@ -29,7 +36,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -40,7 +47,7 @@
 
     <!-- Title -->
     
-    <title>Archiv: 2016 - 给立乐*</title>
+    <title>Clean Code - Chapter 1  整洁代码 - 给立乐*</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -134,76 +141,92 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>2016</h1>
+                <div class="post-heading">
+                    <h1>Clean Code - Chapter 1  整洁代码</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2016-09-03 21:06
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/Clean-Code/">#Clean Code</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
             
-                <div class="post-preview">
-    <a href="/2016/09/03/Clean Code - Chapter 1  整洁代码/">
-        <h1 class="post-title archive">
-            Clean Code - Chapter 1  整洁代码
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2016-09-03 21:06
-    </p>
-</div>
+
+            <!-- Gallery -->
             
-                <div class="post-preview">
-    <a href="/2016/05/14/Github OAuth 登录使用流程/">
-        <h1 class="post-title archive">
-            Github OAuth 登录使用流程
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2016-05-14 05:31
-    </p>
-</div>
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h3 id="烂代码、脏代码会引起怎样的状况？"><a href="#烂代码、脏代码会引起怎样的状况？" class="headerlink" title="烂代码、脏代码会引起怎样的状况？"></a>烂代码、脏代码会引起怎样的状况？</h3><p>会使工作效率严重降低！</p>
+<p>本来数小时就能够解决的问题，却花了数个星期解决。</p>
+<p>只想修改一行代码解决某问题，但却发现涉及数十上百各模块。</p>
+<p>糟糕的代码引发混乱！别人修改糟糕的代码时，往往会越改越烂，就像『破窗理论』。</p>
+<hr>
+<h3 id="什么是整洁代码？"><a href="#什么是整洁代码？" class="headerlink" title="什么是整洁代码？"></a>什么是整洁代码？</h3><p>C++ 语言的发明者 Bjarne Stroustrup 说：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">优雅和高效的代码；</div><div class="line">代码逻辑直截了当，叫缺陷难以隐藏；</div><div class="line">尽量减少依赖关系，使之便于维护；</div><div class="line">依据某种分层战略完善错误处理代码；</div><div class="line">性能调至最优；</div><div class="line">整洁的代码只做好一件事；</div></pre></td></tr></table></figure>
+<p>OTI 公司创始人 Dave Thomas 说：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">整洁的代码应该由作者之外的开发者阅读和增补；</div><div class="line">它应当有单元测试和验收测试；</div><div class="line">它使用有意义的命名；</div><div class="line">它只提供一种而非多种做一件事的途径；</div><div class="line">它只有尽量少的依赖关系，而且要明确的定义和提供清晰的 API；</div><div class="line">代码应通过其字面表达含义，因为不同的语言导致并非所有必需信息均可通过代码自身清晰表述；</div><div class="line">应当使方法块尽量小；</div><div class="line">应当用人类可读的方式来写代码；</div></pre></td></tr></table></figure>
+<p>Extreme Programming Installed（中译版《极限编程实施》）以及 Extreme Programming Adventures in C#（中译版《C# 极限编程探险》）的作者 Ron Jeffries 说：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">能通过所有测试；</div><div class="line">没有重复代码；</div><div class="line">体现系统中的全部设计理念；</div><div class="line">包含尽量少的实体，比如类、方法、函数等；</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="他们是怎样做的？"><a href="#他们是怎样做的？" class="headerlink" title="他们是怎样做的？"></a>他们是怎样做的？</h3><p>Ron Jeffries 说：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">如果同一段代码反复出现，就表示某种想法未在代码中得到良好的体现。我尽力去找出那到底是什么，然后再尽力的用更清晰的方式表达出来。</div><div class="line"></div><div class="line">减少重复代码，提高表达力，提早构建简单抽象。</div><div class="line"></div><div class="line">表达力还不止体现在命名上。我也会检查对象或方法是否想做的事情太多了。如果对象功能太多，最好是切分为两个或多个对象。如果方法功能太多，我总是使用抽取手段(Extract Method)重构之，从而得到一个较为清晰的说明自身功能的方法，以及另外数个说明如何实现这些功能的方法。</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p><code>光把代码写好可不够。必须时时保持代码整洁。我们都见过代码随时间流逝而腐坏。我们应当更积极地阻止腐坏的发生。</code></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
             
-                <div class="post-preview">
-    <a href="/2016/04/24/树莓派使用记录/">
-        <h1 class="post-title archive">
-            树莓派使用记录
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2016-04-24 02:44
-    </p>
-</div>
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>Kommentare:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
             
-            <div class="archive-before-pagination"></div>
-            <ul class="pager">
-    
-    
-</ul>
         </div>
     </div>
-</div>
-
-
+</article>
 
     <!-- Footer -->
     <hr />
@@ -313,7 +336,7 @@
         var dsq = document.createElement('script');
         dsq.type = 'text/javascript';
         dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
