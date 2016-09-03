@@ -10,11 +10,6 @@
 
     <!--Description-->
     
-        <meta name="description" content="公式：int A = number * 255 / 100;
-A：需要填写在 ARGB 中 A 位置上的十六进制字符的十进制形式。
-number：0 - 100 百分比，比如需要93%透明，number 就是93。
-公式使用方式：用计算器十进制计算，算出十进制的结果值 A，将十进制的结果 A 转换">
-    
 
     <!--Author-->
     
@@ -23,7 +18,7 @@ number：0 - 100 百分比，比如需要93%透明，number 就是93。
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="手动计算 ARGB 中的 A 值"/>
+        <meta property="og:title" content="给立乐*"/>
     
 
     <!--Open Graph Description-->
@@ -34,7 +29,7 @@ number：0 - 100 百分比，比如需要93%透明，number 就是93。
 
     <!--Type page-->
     
-        <meta property="og:type" content="article" />
+        <meta property="og:type" content="website" />
     
 
     <!--Page Cover-->
@@ -45,7 +40,7 @@ number：0 - 100 百分比，比如需要93%透明，number 就是93。
 
     <!-- Title -->
     
-    <title>手动计算 ARGB 中的 A 值 - 给立乐*</title>
+    <title>Archiv: 2016/4 - 给立乐*</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -139,87 +134,50 @@ number：0 - 100 百分比，比如需要93%透明，number 就是93。
 </nav>
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<!-- Set your background image for this header in your post front-matter: cover -->
+    
 
+<!-- Page Header -->
+<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <h1>手动计算 ARGB 中的 A 值</h1>
-                    
-                    <span class="meta">
-                        <!-- Date and Author -->
-                        
-                        2015-07-14
-                    </span>
+                <div class="site-heading">
+                    <h1>2016/4</h1>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-
-            <!-- Tags and categories -->
-           
-                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
-                    
-                        
-
-
-<a href="/tags/Android/">#Android</a>
-
-
-                    
-                </div>
-                <div class="col-lg-4 col-md-5 post-categories">
-                    
-                </div>
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             
-
-            <!-- Gallery -->
+                <div class="post-preview">
+    <a href="/2016/04/24/树莓派使用记录/">
+        <h1 class="post-title archive">
+            树莓派使用记录
+        </h1>
+    </a>
+    <p class="post-meta archive">
+        <!-- Date and Author -->
+        
+        2016-04-24
+    </p>
+</div>
             
-
-            <!-- Post Main Content -->
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>公式：<code>int A = number * 255 / 100;</code></p>
-<p>A：需要填写在 ARGB 中 A 位置上的十六进制字符的十进制形式。</p>
-<p>number：0 - 100 百分比，比如需要93%透明，number 就是93。</p>
-<p>公式使用方式：用计算器十进制计算，算出十进制的结果值 A，将十进制的结果 A 转换成十六进制。</p>
-<p>最终就是 A 位置上需要填写的值。</p>
-<p>例 : 百分之五十三透明度 白色</p>
-<p>53 <em> 255 = 13515 (number </em> 255)</p>
-<p>13515 / 100 = 135 (number * 255 / 100)</p>
-<p>135 -&gt; 十六进制 = 0x87 (转换为十六进制)</p>
-<p>ARGB中的A值，就是87。</p>
-<p>百分之五十三透明度 白色，就是#87FFFFFF。</p>
-
-
-                
-            </div>
-
-            <!-- Comments -->
-            
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    
-    <hr />
-    <h3>Kommentare:</h3>
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-
-
-
-                </div>
-            
+            <div class="archive-before-pagination"></div>
+            <ul class="pager">
+    
+    
+</ul>
         </div>
     </div>
-</article>
+</div>
+
+
 
     <!-- Footer -->
     <hr />
@@ -329,7 +287,7 @@ number：0 - 100 百分比，比如需要93%透明，number 就是93。
         var dsq = document.createElement('script');
         dsq.type = 'text/javascript';
         dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
