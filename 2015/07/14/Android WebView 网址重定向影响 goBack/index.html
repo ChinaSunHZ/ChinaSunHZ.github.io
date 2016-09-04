@@ -10,8 +10,7 @@
 
     <!--Description-->
     
-        <meta name="description" content="我们在使用 Android 自带的控件 WebView 访问某网址的时候, 网址会通过某些方式进行重定向. 这时会出现一个问题.
-如下所示:你想要在 『A网址』 中打开 『C网址』, 但实际上打开『C网址』的时候, 是需要通过 『B网址』来中转的.就出现了下面这种情况:1A网址 -&amp;gt; B网址(">
+        <meta name="description" content="作者：给立乐*出处：http://spencer-dev.com/2015/07/14/Android WebView 网址重定向影响 goBack声明：本文采用以下协议进行授权： 自由转载-非商用-非衍生-保持署名|Creative Commons BY-NC-ND 3.0 ，转载请注明作者及出处">
     
 
     <!--Author-->
@@ -21,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Android WebView 网址重定向影响 goBack()"/>
+        <meta property="og:title" content="Android WebView 网址重定向影响 goBack"/>
     
 
     <!--Open Graph Description-->
@@ -43,7 +42,7 @@
 
     <!-- Title -->
     
-    <title>Android WebView 网址重定向影响 goBack() - 给立乐*</title>
+    <title>Android WebView 网址重定向影响 goBack - 给立乐*</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -145,7 +144,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>Android WebView 网址重定向影响 goBack()</h1>
+                    <h1>Android WebView 网址重定向影响 goBack</h1>
                     
                     <span class="meta">
                         <!-- Date and Author -->
@@ -185,7 +184,8 @@
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>我们在使用 Android 自带的控件 WebView 访问某网址的时候, 网址会通过某些方式进行重定向. 这时会出现一个问题.</p>
+                <p>作者：给立乐*<br>出处：<a href="http://spencer-dev.com/2015/07/14/Android WebView 网址重定向影响 goBack">http://spencer-dev.com/2015/07/14/Android WebView 网址重定向影响 goBack</a><br>声明：本文采用以下协议进行授权： 自由转载-非商用-非衍生-保持署名|<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="external">Creative Commons BY-NC-ND 3.0</a> ，转载请注明作者及出处。</p>
+<p>我们在使用 Android 自带的控件 WebView 访问某网址的时候, 网址会通过某些方式进行重定向. 这时会出现一个问题.</p>
 <p>如下所示:<br>你想要在 『A网址』 中打开 『C网址』, 但实际上打开『C网址』的时候, 是需要通过 『B网址』来中转的.<br>就出现了下面这种情况:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">A网址 -&gt; B网址(重定向到C) -&gt; C网址</div></pre></td></tr></table></figure></p>
 <p>好, 现在再来说一下我们在使用 WebView 的时候一些习惯.<br>如果说我们不想让用户在 WebView 中点击连接后, 让用户打开系统的浏览器进行浏览, 而是继续使用我们的 WebView 进行浏览的话.<br>我们一般的操作是:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">webView.setWebViewClient(<span class="keyword">new</span> WebViewClient()&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">shouldOverrideUrlLoading</span><span class="params">(WebView view, String url)</span> </span>&#123; </div><div class="line">        <span class="comment">// 控制新的连接在当前 WebView 中打开</span></div><div class="line">        webView.loadUrl(url);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
 <p>通过上面的方法,让我们的浏览器能够继续访问网页中的链接, 但上面的方式,碰到需要后退的需求,就出现了问题.</p>
