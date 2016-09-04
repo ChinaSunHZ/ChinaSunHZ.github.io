@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="取个好名字的几条简单规则名副其实注意命名，一旦发现有更好的名称，就换掉旧的。
+变量、函数或类的名称应该已经答复了所有的大问题。它该告诉你，它为什么会存在，它做什么事，应该怎么用。如果名称需要注释来补充，那就不算是名副其实。
+
+避免误导程序员必须避免留下掩藏代码本意的错误线索。应当避免使用与本意相悖的">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Spencer">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Clean Code - Chapter 2  有意义的命名"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="给立乐*"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Clean Code - Chapter 2  有意义的命名 - 给立乐*</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-65158169-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">给立乐* Android 开发者</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/ChinaSunHZ/">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Clean Code - Chapter 2  有意义的命名</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2016-09-04 10:31
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/Clean-Code/">#Clean Code</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="取个好名字的几条简单规则"><a href="#取个好名字的几条简单规则" class="headerlink" title="取个好名字的几条简单规则"></a>取个好名字的几条简单规则</h2><h3 id="名副其实"><a href="#名副其实" class="headerlink" title="名副其实"></a>名副其实</h3><p>注意命名，一旦发现有更好的名称，就换掉旧的。</p>
+<p>变量、函数或类的名称应该已经答复了所有的大问题。它该告诉你，它为什么会存在，它做什么事，应该怎么用。如果名称需要注释来补充，那就不算是名副其实。</p>
+<hr>
+<h3 id="避免误导"><a href="#避免误导" class="headerlink" title="避免误导"></a>避免误导</h3><p>程序员必须避免留下掩藏代码本意的错误线索。应当避免使用与本意相悖的词。</p>
+<p>以同样的方式拼写出同样的概念才是信息。拼写前后不一致就是误导。</p>
+<p>假如相似的名称依字母顺序放在一起，且差异很明显，那就会相当有助益，因为程序员多半压根不看你的详细注释，甚至不看该类的方法列表就直接看名字挑选一个对象。</p>
+<p>例 1：别用 accountList 来指称一组账号，除非它真的是 List 类型。如果包纳账号的容器并非真的是个 List 类型，就会引起错误的判断。<code>（后面会提到，即便容器就是个 List，最好也别再名称中写出容器类型名）</code></p>
+<p>例 2：提防使用不同之处较小的名称。相区分模块中的某处 XYZControllerForEfficientHandlingOfStrings 和另一处的 XYZControllerForEfficientStorageOfStrings，会花多长时间？这两个词的外形实在太相似了。</p>
+<hr>
+<h3 id="做有意义的区分"><a href="#做有意义的区分" class="headerlink" title="做有意义的区分"></a>做有意义的区分</h3><p>如果程序员只是为了满足编译器或解释器的需要而写代码，就会制造麻烦。</p>
+<p>光是添加<code>数字</code>[^例 2]系列或是<code>废话</code>[^例 3]远远不够，即便这足以让编译器满意。如果名称必须相异，那其意思也应该不同才对。</p>
+<p>废话都是冗余的。</p>
+<p>要<code>区分名称</code>[^例 4]，就要以读者能鉴别的不同之处的方式来区分。</p>
+<p>例 1：因为同一作用范围内两样不同的东西不能重名，你可能会随手改掉其中的一个名称。有时干脆以错误的拼写充数，结果就是出现在更正拼写错误后导致编译器出错的情况。</p>
+<p>例 2：以数字系列命名（a1、a2，······aN）是依义命名的对立面。这样的名称纯属误导 —— 完全没有提供正确的信息；也没有提供导向作者意图的线索。</p>
+<p>例 3：废话是另一种没意义的区分。假设你有一个 Product 类。如果还有一个 ProductInfo 或 ProductData 类，那他们的名称虽然不同，意思却无区别。Info 和 Data 就像 a、an 和 the 一样，是意义含混的废话。Variable 一词永远不应当出现在变量名中。Table 一词永远不应当出现在表名中。NameString 会比 Name 好吗？设想有一个名为 Customer 的类，还有一个名为 CustomerObject 的类。区别何在？</p>
+<p>例 4：如果缺少了明确的约定，变量 moneyAmount 就与 money 没区别，customInfo 与 customer 没区别，accountData 与 account 没区别， theMessage 也与 message 没区别。</p>
+<hr>
+<h3 id="使用读得出来的名称"><a href="#使用读得出来的名称" class="headerlink" title="使用读得出来的名称"></a>使用读得出来的名称</h3><p>若使用的名称不能正确读出来或理解到意义，可能都没有办法正常的进行沟通。</p>
+<p>错误的方式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DtaRcrd102</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> Date genymdhms; <span class="comment">// 实际上这个变量的意思是：生成日期，年、月、日、时、分、秒。</span></div><div class="line">  <span class="keyword">private</span> Date modymdhms;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">final</span> String pszqint = <span class="string">"102"</span>;</div><div class="line">  <span class="comment">/* ... */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上述代码若直接看，可能根本就不能理解是什么意思，也没法正确的读出来。在和其他人沟通交流的时候，也会很麻烦。</p>
+<p>正确的方式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> Date generationTimestamp;</div><div class="line">  <span class="keyword">private</span> Date modificationTimestamp;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">final</span> String recordId = <span class="string">"102"</span>;</div><div class="line">  <span class="comment">/* ... */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在读起来就像人话了吧。和其他人沟通起来的时候也会很方便。</p>
+<hr>
+<h3 id="使用可搜索的名称"><a href="#使用可搜索的名称" class="headerlink" title="使用可搜索的名称"></a>使用可搜索的名称</h3><p>单字母名称和数字常量有个问题，就是很难再一大篇文字中找出来。</p>
+<p>名称长短应与其作用与大小相对应。</p>
+<p>若变量或常量可能在代码中多处使用，则应赋予其以便搜索的名称。</p>
+<p>长名称胜于短名称，搜得到的名称胜于自造编码代写就的名称。<code>（例 2 说明了结论的原因。后面会提到相反的结论，但并不太冲突。）</code></p>
+<p>例 1：找到 MAX_CLASSES_PER_SUTDENT 很容易，但是想找数字 7 就麻烦了，他可能是某些文件名或其他常量定义的一部分，出现在因不同意图而采用的各种表达式中。如果该常量是个长数字，又被人错改过，就会逃过搜索，从而造成错误。</p>
+<p>例 2：字母 e 也不是个便于搜索的好变量名。他是英文中最常用的字母，在每个程序，每个片段代码都有可能出现。 由此可见，长名称胜于短名称，搜得到的…..。（结论在上面）</p>
+<hr>
+<h3 id="避免使用编码"><a href="#避免使用编码" class="headerlink" title="避免使用编码"></a>避免使用编码</h3><p>把类型或作用域编进名称里面，突然增加了解码的负担。这对解决问题而言，纯属多余的负担。带编码的名称通常也不便发音。</p>
+<p><code>这里就是在上文 避免误导 片段所指的内容</code></p>
+<hr>
+<h3 id="成员前缀"><a href="#成员前缀" class="headerlink" title="成员前缀"></a>成员前缀</h3><p>应当把类和函数做得足够小，消除对成员前缀的需要。你应当使用某种可以高亮或用颜色标出成员的编辑环境。</p>
+<p><em>OS：虽然书中说的有道理。但个人认为如果加上了前缀，在写代码时想使用某些特定变量会很方便。</em></p>
+<p><em>例：成员变量都是 小写m 开头。那在写代码的过程中，就能方便的区分了。看代码的时候即使没有高亮，也能够了解其所在的作用域，并且看起来也会很整齐。</em></p>
+<p><em>= _ = 也可能只是个人习惯而已。</em></p>
+<hr>
+<h3 id="接口和实现"><a href="#接口和实现" class="headerlink" title="接口和实现"></a>接口和实现</h3><p>有时也会出现采用编码的特殊情形，比如用到接口或抽象类等情况。</p>
+<p>例 1：你在做一个创建形状用的抽象工厂（AbstractFactory）。该工厂是个接口，要用具体类来实现。你怎么命名工厂和具体类呢？</p>
+<p>书上说：使用 IShapeFactory 和 ShapeFactory 吗？ 我不喜欢加修饰的接口。前导字母 I 被滥用到了说好听点是干扰，说难听点根本就是废话的程度。我不想让用户知道我给他们的是接口。我就是想让他们知道那是个 ShapeFactory。</p>
+<p><em>OS：虽然觉得书中说的有点过激，但其实结论我是赞同的。用户只需要知道这个东西是做什么的就可以了，其他的完全不用操心。</em></p>
+<hr>
+<h3 id="避免映射思维"><a href="#避免映射思维" class="headerlink" title="避免映射思维"></a>避免映射思维</h3><p>不应当让读者在脑中把你的名称翻译为他们熟知的名称。这种问题经常出现在选择是使用问题领域术语还是解决方案领域术语时。</p>
+<hr>
+<h3 id="类名"><a href="#类名" class="headerlink" title="类名"></a>类名</h3><p>类名和对象名应该是名词或名词短语。</p>
+<p>应避免使用 Manager、Processor、Data 或 Info 这样的类名。类名不应当是动词。</p>
+<hr>
+<h3 id="方法名"><a href="#方法名" class="headerlink" title="方法名"></a>方法名</h3><p>方法名应当是动词或动词短语。属性访问器、修改器和断言应该根据其值命名，并依 Javabean 标准加上 get、set 和 is 前缀。</p>
+<p>重载构造器时，请使用描述了参数的静态工厂方法[^例 1]。也可以考虑将相应的构造器设置为 private，强制使用这种命名手段。</p>
+<p>例 1：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Complex fulcrumPoint = Complex.fromRealNumber(<span class="number">23.0</span>);</div><div class="line"><span class="comment">// 可读性要好于</span></div><div class="line">Complex fulcrumPoint = <span class="keyword">new</span> Complex(<span class="number">23.0</span>);</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="每个概念对应一个词"><a href="#每个概念对应一个词" class="headerlink" title="每个概念对应一个词"></a>每个概念对应一个词</h3><p>给每个抽象概念选一个词，并且一以贯之。函数名称应当独一无二，而且要保持一致，这样才能不借助多余的浏览就能找到正确的方法。</p>
+<hr>
+<h3 id="别用双关语"><a href="#别用双关语" class="headerlink" title="别用双关语"></a>别用双关语</h3><p>避免将同一单词用于不同的目的。同一术语用于不同概念，基本上就是双关语了。应当遵从<em>一词一义</em>的规则。</p>
+<hr>
+<h3 id="使用解决方案领域名称"><a href="#使用解决方案领域名称" class="headerlink" title="使用解决方案领域名称"></a>使用解决方案领域名称</h3><p>只有程序员才会读你的代码。所以，尽管用那些计算机科学术语、算发明、模式名、数学术语吧。</p>
+<p>程序员要做太多技术性工作。给这些事取个技术性的名称，通常是最靠谱的做法。</p>
+<hr>
+<h3 id="使用源自所涉问题领域的名称"><a href="#使用源自所涉问题领域的名称" class="headerlink" title="使用源自所涉问题领域的名称"></a>使用源自所涉问题领域的名称</h3><p>如果不能用程序员熟悉的术语来给手头的工作命名，就采用从所涉问题领域而来的名称吧。至少，能让负责维护代码的程序员去请教领域专家。</p>
+<hr>
+<h3 id="添加有意义的语境"><a href="#添加有意义的语境" class="headerlink" title="添加有意义的语境"></a>添加有意义的语境</h3><p>很少有名称是能自我说明的 —— 多数都不能。反之，你需要用有良好命名的类、函数或名称空间来放置名称，给读者提供语境[^例 1]。如果没有这么做，给名称添加前缀就是最后一招了[^例 2]。</p>
+<p>例 1：设想你有名为 firstName、lastName、street、houseNumber、city、state 和 zip code 的变量。当他们搁一块儿的时候，很明确是构成了一个地址。不过，假使只是在某个地方中看见了孤零零的一个 state 变量呢？你会理所当然的推断那是某个地址的一部分吗？</p>
+<p>例 2：通过添加前缀 addrFirstName、addrLastName、addrState 等，以此提供语境、至少读者会明白这些变量是某个更大结构的一部分。当然，更好的方案是创建一个名为 Address 的类。这样，即便是编译器也会知道这些变量隶属于某个更大的概念了。</p>
+<hr>
+<h3 id="不要添加没有用的语境"><a href="#不要添加没有用的语境" class="headerlink" title="不要添加没有用的语境"></a>不要添加没有用的语境</h3><p>只要短名称足够清楚，就要比长名称好。别给名称添加不必要的语境。精确正式命名的要点。</p>
+<p><code>在上文 使用可搜索的名称 中，提到了长名称比短名称好，其实这两者并不冲突，根据不同情况使用长短不同的名称，没规定哪个一定最好。</code></p>
+<p>例 1：假设有一个名为『加油站豪华版』（Gas station Deluxe）的应用，在其中给每个类添加 GSD 前缀这就不是什么好事情。说白了，你是在和自己用的工具过不去。输入 G，按下自动完成键，结果会得到系统中全部类的列表。这样真的好吗？为什么要搞得 IDE 没法帮助你？</p>
+<hr>
+<h3 id="Google-Java编程风格指南（中）-作者：Hawstein"><a href="#Google-Java编程风格指南（中）-作者：Hawstein" class="headerlink" title="Google Java编程风格指南（中）- 作者：Hawstein"></a><a href="http://www.hawstein.com/posts/google-java-style.html#Naming" target="_blank" rel="external">Google Java编程风格指南（中）- 作者：Hawstein</a></h3><p>点击标题能够直接跳转到对应文章中。</p>
+<p>在此文的第五部分，展示了 Google 的命名规范。</p>
+<hr>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>取好名字最难得地方在于需要良好的描述技巧和共有文化背景。与其说这是一种技术，商业或管理额问题，还不如说是一种教学问题。其结果是，这个领域内的许多人都没能学会做得很好。</p>
+<p>如果你是在维护别人的代码，使用重构工具来解决问题。效果立竿见影，而且会持续下去。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>Kommentare:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                   
+                        <li>
+                            <a href="https://github.com/ChinaSunHZ/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="http://weibo.com/shz272119494" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://twitter.com/ChinaSunHZ" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://www.facebook.com/ChinaSunHZ" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://cn.linkedin.com/in/浩臻-孙-0208ba94" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="mailto:China.SunhZ@Gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <!--
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'china_sunhz';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>
