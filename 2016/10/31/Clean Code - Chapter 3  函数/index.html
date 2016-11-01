@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="作者：给立乐*出处：http://spencer-dev.com/2016/10/31/Clean Code - Chapter 3  函数声明：本文采用以下协议进行授权： 自由转载-非商用-非衍生-保持署名|Creative Commons BY-NC-ND 3.0 ，转载请注明作者及出处。
+如何">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Spencer">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Clean Code - Chapter 3  函数"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="给立乐*"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Clean Code - Chapter 3  函数 - 给立乐*</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/bootstrap-3.3.6.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/font-awesome-4.6.3.min.css" rel="stylesheet" type="text/css">
+    
+    <!-- <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"> -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/google-font-1.css" rel="stylesheet" type="text/css">
+    
+    <!-- <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"> -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/google-font-2.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/featherlight-1.3.5.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-65158169-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">给立乐* Android 开发者</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/ChinaSunHZ/">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://7xjqw5.com1.z0.glb.clouddn.com/theme/image/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Clean Code - Chapter 3  函数</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2016-10-31 22:39
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/Clean-Code/">#Clean Code</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>作者：给立乐*<br>出处：<a href="http://spencer-dev.com/2016/09/04/Clean Code - Chapter 3  函数">http://spencer-dev.com/2016/10/31/Clean Code - Chapter 3  函数</a><br>声明：本文采用以下协议进行授权： 自由转载-非商用-非衍生-保持署名|<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="external">Creative Commons BY-NC-ND 3.0</a> ，转载请注明作者及出处。</p>
+<h1 id="如何写好函数？"><a href="#如何写好函数？" class="headerlink" title="如何写好函数？"></a>如何写好函数？</h1><p>在编程的早年岁月，系统由程序和子程序组成。后来，在 Fortran 和 PL／1 的年代，系统由程序、子程序和函数组成。如今，只有函数存活下来。函数是所有程序中的第一组代码。本章将讨论如何写好函数。</p>
+<hr>
+<h2 id="短小"><a href="#短小" class="headerlink" title="短小"></a>短小</h2><p>是什么让代码易于阅读和理解？怎么才能让函数表达其意图？该给函数赋予那些属性，好让读者一看就明白函数是属于怎样的程序？</p>
+<p>函数的第一规则是要<strong>短小</strong>。第二条规则是<strong>还要更短小</strong>。</p>
+<p>在 20 世纪 80 年代，我们常说函数不该长于一屏。当然，说这话的时候，VT100 屏幕只有 24 行、80 列，而编辑器就得先占去 4 行空间放菜单。如今，用上了精致的字体和宽大的显示器，一屏里面可以显示 100 行，每行能容纳 150 个字符。</p>
+<p><strong>每行都不应该有 150 个字符那么长。函数也不应该有 100 行那么长，20 行封顶最佳。</strong></p>
+<p><strong>程序中每个函数都只有两行、三行或四行。每个函数都一目了然。每个函数都只说一件事。而且，每个函数都依序把你带到下一个函数。这就是函数应该达到的短小程度。</strong></p>
+<h3 id="代码块和锁进"><a href="#代码块和锁进" class="headerlink" title="代码块和锁进"></a>代码块和锁进</h3><p>if 语句、else 语句、while 语句等，其中的代码块应该只有一行／该行大抵应该是一个函数调用语句。这样不但能保持函数短小，而且，因为块内调用的函数拥有较具说明性的名称，从而增加了文档上的价值。</p>
+<p>这也意味着函数不应该大到足以容纳千他结构。所以，函数的锁进层级不该多余一层或两层。当然，这样的函数易于理解和阅读。</p>
+<hr>
+<h2 id="只做一件事"><a href="#只做一件事" class="headerlink" title="只做一件事"></a>只做一件事</h2><p><strong>函数应该做一件事。做好这件事。只做这一件事。</strong></p>
+<p>如何判断是一件事？</p>
+<p>如果函数只做了该函数名下同一抽象层上的步骤，则函数还是只做了一件事。编写函数毕竟是为了把一些大的概念（换言之函数的名称）拆分为另一抽象层上的一系列步骤。</p>
+<p>所以，要判断函数是否不只做了一件事，还有一个办法，就是看能否再拆出来一个函数，该函数不只是单纯的重新诠释其实现。</p>
+<p><strong>只做一件事的函数无法被合理的切分成多个区段。</strong></p>
+<hr>
+<h2 id="每个函数一个抽象层级"><a href="#每个函数一个抽象层级" class="headerlink" title="每个函数一个抽象层级"></a>每个函数一个抽象层级</h2><p>要确保函数只做一件事，函数中的语句都要在同一抽象层级上。</p>
+<p>函数中混杂不同抽象层级，往往让人迷惑。读者可能无法判断某个表达式是基础概念还是细节。更恶劣的是，就像破损的窗户，一旦细节与基础概念混杂，更多的细节就会在函数中纠结起来。</p>
+<h3 id="自顶向下读代码：向下规则"><a href="#自顶向下读代码：向下规则" class="headerlink" title="自顶向下读代码：向下规则"></a>自顶向下读代码：向下规则</h3><p>我们想要让代码拥有自顶向下的阅读顺序。我们想要让每个函数后面都跟着位于下一抽象层级的函数，这样一来，在查看函数列表时就能跟着抽象层级向下阅读了。我把这叫做<strong>向下规则</strong>。</p>
+<p>这是保持函数短小、确保只做一件事情的要诀。</p>
+<p>让代码读起来像是一系列自顶向下的段落是保持抽象层级协调一致的有效技巧。</p>
+<hr>
+<h2 id="switch-语句"><a href="#switch-语句" class="headerlink" title="switch 语句"></a>switch 语句</h2><p>写出短小的 switch 语句很难。写出只做一件事情的 switch 语句也很难。switch 天生要做 N 件事。我们总是无法避开 switch 语句，不过还是能够确保每个 switch 都埋藏在比较低的抽象层级中，而且永远不重复。当然，我们可以利用多态来实现这一点。</p>
+<p>该问题的解决方案是将 switch 语句埋到抽象工厂底下，不让任何人看到。该工厂使用 switch 语句为 Employee 派生物创建适当的实体，而不同的函数，如 calculatePay、isPayday 和 deliverPay 等，则藉由 Employee 接口多态的接受派遣。</p>
+<p>对于 switch 语句，我的规矩是如果只出现一次，用于创建多态对象，而且隐藏在某个继承关系中，在系统的其他部分看不到，就还能容忍。当然也要就事论事，有时我也会部分或全部违反这条规矩。</p>
+<p>修改前：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Money <span class="title">calculatePay</span><span class="params">(Employee e)</span> throw InvalidEmployeeType </span>&#123;</div><div class="line">  <span class="keyword">switch</span>(e.type) &#123;</div><div class="line">    <span class="keyword">case</span> COMMISSIONED:</div><div class="line">      <span class="keyword">return</span> calculateCommissionedPay(e);</div><div class="line">    <span class="keyword">case</span> HOURLY:</div><div class="line">      <span class="keyword">return</span> calculateHourlyPay(e);</div><div class="line">    <span class="keyword">case</span> SALARIED:</div><div class="line">      <span class="keyword">return</span> calculateSalariedPay(e);</div><div class="line">    <span class="keyword">default</span>:</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> InvalidEmployeeType(e.type);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>修改后：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">boolean</span> <span class="title">isPayday</span><span class="params">()</span></span>;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> Money <span class="title">calculatePay</span><span class="params">()</span></span>;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">deliverPay</span><span class="params">(Money pay)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">EmployeeFactory</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> Employee <span class="title">makeEmployee</span><span class="params">(EmployeeRecord r)</span> <span class="keyword">throws</span> InvalidEmployeeType</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmployeeFactoryImpl</span> <span class="keyword">implements</span> <span class="title">EmployeeFactory</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> Employee <span class="title">makeEmployee</span><span class="params">(EmployeeRecord r)</span> <span class="keyword">throws</span> InvalidEmployeeType </span>&#123;</div><div class="line">    <span class="keyword">switch</span>(r.type) &#123;</div><div class="line">      <span class="keyword">case</span> COMMISSIONED:</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CommissionedEmployee(r);</div><div class="line">      <span class="keyword">case</span> HOURLY:</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> HorulyEmployee(r);</div><div class="line">      <span class="keyword">case</span> SALARIED:</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SalariedEmployee(r);</div><div class="line">      <span class="keyword">default</span>:</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> InvalidEmployeeType(r.type);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="使用描述性的名称"><a href="#使用描述性的名称" class="headerlink" title="使用描述性的名称"></a>使用描述性的名称</h2><p>沃德原则：如果每个例程都让你感到深合己意，那就是整洁代码。</p>
+<p>若遵循这一原则，大半工作都在于为只做一件事的小函数取个好名字。函数越短小，功能越集中，就越便于取个好名字。</p>
+<p>别害怕长名称。长而具有描述性的名称，要比短而令人费解的名称好。长而具有描述性的名称，要比描述性的长注释好。使用某种命名约定，让函数名称中的多个单词容易阅读，然后使用这些单词给函数取个能说清其功能的名称。</p>
+<p>选择描述性的名称能理清你关于模块的设计思路，并帮你改进之。追索好名称，往往导致对代码的改善重构。</p>
+<p>命名方式要保持一致。使用与模块名一脉相承的短语、名词和动词给函数命名。</p>
+<hr>
+<h2 id="函数参数"><a href="#函数参数" class="headerlink" title="函数参数"></a>函数参数</h2><p>最理想的参数数量是零（零函数参数），其次是一（单参数函数），再次是二（双参数函数），应尽量避免三（三参数函数）。有足够特殊的理由才能用三个以上参数（多参数函数）—— 所以无论如何也不要这么做。</p>
+<p>从测试的角度看，参数甚至叫人为难。想想看，要编写一个能够确保参数的各种组合运行正常的测试用例，是多么困难的事。如果没有参数，就是小菜一碟。如果只有一个参数，也不太困难。有两个参数，问题就麻烦多了。如果参数多于两个，测试覆盖所有可能值的组合简直让人生畏。</p>
+<p>输出参数比输入参数还要难以理解。读函数时，我们惯于认为信息通过参数输入函数，通过返回值从函数中<strong>输出</strong>。我们不太期望信息通过参数输出。所以，输出参数往往让人苦思之后才恍然大悟。</p>
+<h3 id="一元函数的普遍形式"><a href="#一元函数的普遍形式" class="headerlink" title="一元函数的普遍形式"></a>一元函数的普遍形式</h3><p>向函数传入单个参数有两种极普遍的理由。你也许会问关于那个参数的问题，就像在 boolean fileExists(“MyFile”) 中那样。也可能是操作该参数，将其转换为其他什么东西，在输出之。例如，InputStream fileOpen(“MyFIle”) 把 String 类型的文件名转换为 InputStream 类型的返回值。这就是读者看到函数时所期待的东西。你应当选用较能区别这两种理由的名称，而且总在一致的上下文中使用这两种形式。</p>
+<p>还有一种虽然不那么普遍但仍极有用的单参数函数形式，那就是事件(event)。在这种形式中，有输入参数而无输出参数。程序将函数看作是一个事件，使用该参数修改系统状态，例如 void passwordAttemptFailedNtimes(int attempts)。小心使用这种形式。应该让读者很清楚地了解它是个事件。谨慎地选用名称和上下文语境。尽量避免编写不遵循这些形式的一元函数。</p>
+<p>对于转换，使用输出参数而非返回值令人迷惑。如果函数要对输入参数进行转换操作，转换结果就该体现为返回值。实际上，StringBuffer transform(StringBuffer in) 要比 void transform(StringBuffer out) 强，即便第一种形式只是简单地返回输入参数。至少，它遵循了转换的形式。</p>
+<h3 id="标识参数"><a href="#标识参数" class="headerlink" title="标识参数"></a>标识参数</h3><p>标识参数丑陋不堪。向函数传入布尔值简直就是骇人听闻的做法。这样做，方法签名立刻变得复杂起来，大声宣布本函数不止做一件事。如果标识为 true 将会这样做，标识为 false 则会那样做！</p>
+<h3 id="二元函数"><a href="#二元函数" class="headerlink" title="二元函数"></a>二元函数</h3><p>有两个参数的函数要比一元函数难懂。例如，writeField(name) 比 writeField(outputStream, name) 好懂。</p>
+<p>尽管两种情况下意义都很清楚，但第一个只要扫一眼就能明白，更好地表达了其意义。第二个就得暂停一下才能明白，除非我们学会忽略第一个参数。而且最终那也会导致问题，因为我们根本就不该忽略任何代码。忽略掉的部分就是缺陷的藏身之地。</p>
+<p>当然，有些时候两个参数正好。例如，Point p = new Point(0, 0); 就相当合理。笛卡儿点天生拥有两个参数。如果看到 new Point(0); 我们会倍感惊讶。然而，本例中的两个参数却只是单个值的有序组成部分！而 output-Stream 和 name 既非自然的组合，也不是自然的排序。</p>
+<p>二元函数不算恶劣，而且你当然也会编写二元函数。不过，你得小心，使用二元函数要付出的代价。你应该尽量利用一些机制将其转换为一元函数。例如，可以把 writeField 方法写成 outputStream 的成员之一，从而能这样用：outputStream.writeField(name)。或者，也可以把 outputStream 写成当前类的成员变量，而且无需再传递它。还可以分离出类似 FieldWriter 的新类，在其构造器中采用 outputStream，并且包含一个 write 方法。</p>
+<h3 id="三元函数"><a href="#三元函数" class="headerlink" title="三元函数"></a>三元函数</h3><p>有三个参数的函数要比二元函数难懂的多。排序、琢磨、忽略的问题都会加倍体现。建议你在写三元函数前一定要想清楚。</p>
+<h3 id="参数对象"><a href="#参数对象" class="headerlink" title="参数对象"></a>参数对象</h3><p>如果函数看来需要两个、三个或三个以上参数，就说明其中一些参数应该封装为类了。</p>
+<h3 id="动词与关键字"><a href="#动词与关键字" class="headerlink" title="动词与关键字"></a>动词与关键字</h3><p>给函数取个好名字，能较好的解释函数的意图，以及参数的顺序和意图。对一元函数，函数和参数应当形成一种非常良好的动词／名词对形式。例如：write(name) 就相当令人认同。不管这个 “name” 是什么，都要被 “write”。更好的名字大概是 writeField(name)，他告诉我们，”name” 是一个 “field”。</p>
+<hr>
+<h2 id="无副作用"><a href="#无副作用" class="headerlink" title="无副作用"></a>无副作用</h2><p>副作用是种谎言。函数承诺只做一件事，但还是会做其他被藏起来的事。有时，他会对自己类中的变量做出未能预期的改动。有时，他会把变量搞成向函数传递的参数或是系统全局变量。无论哪种情况，都是具有破坏性的，会导致古怪的时序性耦合及顺序依赖。</p>
+<h3 id="输出参数"><a href="#输出参数" class="headerlink" title="输出参数"></a>输出参数</h3><p>参数多数会被自然而然地看作是函数的<strong>输入</strong>。</p>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">appendFooter(s);</div></pre></td></tr></table></figure>
+<p>这个函数是把 s 添加到什么东西后面吗？或者它把什么东西添加到了 s 后面？s 是输入参数还是输出参数？稍许花点时间看看函数签名：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">appendFooter</span><span class="params">(StringBuffer report)</span></span>;</div></pre></td></tr></table></figure>
+<p>事情清楚了，但付出了检查函数生命的代价。你被迫检查函数签名，就得花上一点时间。应该避免这种终中断思路的事。</p>
+<p>有时的确需要输出参数。然而，面向对象语言中对输出参数的大部分需求已经消失了，因为 this 也有输出函数的意味在内。换言之，最好是这样调用 appendFooter：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">report.appendFooter();</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="分隔指令与询问"><a href="#分隔指令与询问" class="headerlink" title="分隔指令与询问"></a>分隔指令与询问</h2><p>函数要么做什么事，要么回答什么事，但二者不可兼得。函数应该修改某对象的状态，或是返回该对象的有关信息。两样都干常会导致混乱。</p>
+<p>看看下面的例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">set</span><span class="params">(String attribute, String value)</span></span>;</div></pre></td></tr></table></figure>
+<p>该函数设置某个指定属性，如果成功就返回 true，如果不存在那个属性则返回 false。这样就导致了以下语句：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(set(<span class="string">"username"</span>, <span class="string">"unclebob"</span>))....</div></pre></td></tr></table></figure>
+<p>这是什么意思呢？它是在问 username 属性值是否之前已经设置为 unclebob 吗？或者它是在问 username 属性值是否成功设置为 unclebob 呢？从这行调用很难判断其含义，因为 set 是动词还是形容词并不清楚。</p>
+<p>作者本意，set 是个动词，但在 if 语句的上下文中，<strong>感觉</strong>它像是个形容词。该语境读起来像是说 “如果 username 属性值之前已经被设置为 uncleob”，而不是 “设置 username 属性值为 unclebob，看看是否可行，然后…..”。要解决这个问题，可以将 set 函数重命名为 setAndCheckIfExists，但这对提高 if 语句的可读性帮助不大。真正的解决方案是把指令与询问分隔开来，防止混淆的发生：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(attributeExists(<span class="string">"username"</span>))&#123;</div><div class="line">  setAttribute(<span class="string">"username"</span>, <span class="string">"unclebob"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="使用异常代替返回错误码"><a href="#使用异常代替返回错误码" class="headerlink" title="使用异常代替返回错误码"></a>使用异常代替返回错误码</h2><p>从指令式函数返回错误码轻微违反了指令与询问分隔的规则。它鼓励了在 if 语句判断中把指令当作表达式使用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(deletePage(page) == E_OK)</div></pre></td></tr></table></figure>
+<p>这不会引起动词／形容词混淆，但却导致更深层次的嵌套结构。当返回错误码时，就是在要求调用这里可处理错误。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(deletePage(page) == E_OK) &#123;</div><div class="line">  <span class="keyword">if</span>(registry.deleteReference(page.name) == E_OK) &#123;</div><div class="line">    <span class="keyword">if</span>(configKeys.deleteKey(page.name.makeKey()) == E_OK) &#123;</div><div class="line">      logger.log(<span class="string">"page deleted"</span>);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      logger.log(<span class="string">"configKey not deleted"</span>);</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    logger.log(<span class="string">"deleteReference from registry failed"</span>);</div><div class="line">  &#125;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  logger.log(<span class="string">"delete failed"</span>);</div><div class="line">  <span class="keyword">return</span> E_ERROR;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>另一方面，如果使用异常代替返回错误码，错误处理代码就能从主路径代码中分离出来得到简化。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">  deletePage(page);</div><div class="line">  registry.deleteReference(page.name);</div><div class="line">  configKeys.deleteKey(page.name.makeKey());</div><div class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">  logger.log(e.getMessage());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="抽离-Try-Catch-代码块"><a href="#抽离-Try-Catch-代码块" class="headerlink" title="抽离 Try/Catch 代码块"></a>抽离 Try/Catch 代码块</h3><p>Try/Catch 代码块丑陋不堪。他们搞乱了代码结构，把错误处理与正常流程混为一谈。最好把 try 和 catch 代码块的主体部分抽离出来，另外形成函数。</p>
+<h3 id="Error-java-依赖磁铁"><a href="#Error-java-依赖磁铁" class="headerlink" title="Error.java 依赖磁铁"></a>Error.java 依赖磁铁</h3><p>返回错误码通常暗示某处有个类或是枚举，定义了所有错误码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Error &#123;</div><div class="line">    OK,</div><div class="line">    INVALID,</div><div class="line">    NO_SUCH,</div><div class="line">    LOCKED,</div><div class="line">    OUT_OF_RESOURCES,</div><div class="line">    WAITING_FOR_EVENT;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样的类就是一块依赖磁铁（dependency magnet）；其他许多类都得导入和使用它。当 Error 枚举类修改时，所有这些其他的类都需要重新编译和部署。这对 Error 类造成了负面压力。程序员不愿意新增加新的错误代码，因为这样他们就得重新构建和部署所有东西，于是他们就复用旧的错误代码，而不添加新的。</p>
+<p>使用异常代替错误码，新异常就可以从异常<strong>类派生</strong>出来，无需重新编译或重新部署。</p>
+<hr>
+<h2 id="别重复自己（DRY-原则）"><a href="#别重复自己（DRY-原则）" class="headerlink" title="别重复自己（DRY 原则）"></a>别重复自己（DRY 原则）</h2><p>重复可能是软件中一切邪恶的根源。许多原则和实践规则都是为了控制与消除重复而创建。例如，全部考德（Codd）数据库范式都是为消灭数据重复而服务。再想想看，面向对象编程是如何将代码集中到基类，从而避免了冗余。面向方面编程（Aspect Oriented Programming）、面向组件编程（Component Oriented Programming）多少也都是消除重复的一种策略。看来，自程序发明以来，软件开发领域的所有创新都是在不断的尝试从源代码中消灭重复。</p>
+<hr>
+<h2 id="结构化编程"><a href="#结构化编程" class="headerlink" title="结构化编程"></a>结构化编程</h2><p>有些程序员遵循 Edsger Dijkstra 的结构化编程规则。Dijkstra 认为，每个函数、函数中的每个代码块都应该有一个入口、一个出口。遵循这些规则，意味着每个函数中只该有一个 return 语句，循环中不能有 break 或 continue 语句，而且 <strong>永永远远</strong>不能有任何 goto 语句。</p>
+<p>我们赞成结构化编程的目标和规范，但对于小函数，这些规则助益不大。只有在大函数中，这些规则才会有明显的好处。</p>
+<p>所以，只要函数保持短小，偶尔出现 return、break 或 continue 语句没有坏处，审计比单入单出原则更具有表达力。</p>
+<hr>
+<h2 id="如何写出这样的函数"><a href="#如何写出这样的函数" class="headerlink" title="如何写出这样的函数"></a>如何写出这样的函数</h2><p>写代码和写别的东西很像。在写论文或文章时，你先想写什么就写什么，然后再打磨它。初稿也许丑陋无序，你就开始斟酌推敲，直到达到你心目中的样子。</p>
+<p>我写函数时，一开始都冗长而复杂。有太多缩紧和潜逃循环。有过长的参数列表。名称是随意取的，也会有重复的代码。不过我会配上一套单元测试，覆盖每行丑陋的代码。</p>
+<p>然后我打磨这些代码，分解函数、修改名称、消除重复。我缩短和重新安置方法。有时我还拆散类。同时保持测试通过。</p>
+<p>最后，遵循本章列出大规则，我组装好这些函数。</p>
+<p>我并不从一开始就按照规则写函数。我想没人能做得到。</p>
+<p><strong>个人觉得，在开始写的时候就尽量的写好，也许稍后就是永不。但也要记得不要优化先行。</strong></p>
+<hr>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>函数是语言的动词，类是名词。这并非是退回到那种认为需求文档中的名词和动词就是系统中类和函数的最初设想的可怕的旧观念。其实这是个历史更久的真理。编程艺术是且一直就是语言设计的艺术。</p>
+<p>大师级程序员把系统当作故事来讲，而不是当作程序来写。他们使用选定编程语言提供的工具构建一种更为丰富且更具表达力的语言，用来讲那个故事。那种领域特定语言的一个部分，就是描述在系统中发生的各种行为的函数层级。在一种狡猾的递归操作中，这些行为使用它们定义的与领域紧密相关的语言讲述自己那个小故事。</p>
+<p>本章所讲述的是有关编写良好函数的机制。如果你遵循这些规则，函数就会短小，有个好名字，而且被很好的归置。不过永远别忘记，真正的目标在于讲述系统的故事，而你编写的函数必须干净利落地拼装到一起，形成一种精确而清晰的语言，帮助你讲故事。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                   
+                        <li>
+                            <a href="https://github.com/ChinaSunHZ/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="http://weibo.com/shz272119494" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://twitter.com/ChinaSunHZ" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://www.facebook.com/ChinaSunHZ" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://cn.linkedin.com/in/浩臻-孙-0208ba94" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="mailto:China.SunhZ@Gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <!--
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="http://7xjqw5.com1.z0.glb.clouddn.com/theme/js/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="http://7xjqw5.com1.z0.glb.clouddn.com/theme/js/bootstrap-3.3.6.min.js"></script>
+
+<!-- Gallery -->
+<script src="http://7xjqw5.com1.z0.glb.clouddn.com/theme/js/featherlight-1.3.5.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'spencer-dev-com';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>
