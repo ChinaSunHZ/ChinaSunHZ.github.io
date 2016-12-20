@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="作者：给立乐*出处：http://spencer-dev.com/2016/12/4/Clean Code - Chapter 6  对象与数据结构声明：本文采用以下协议进行授权： 自由转载-非商用-非衍生-保持署名|Creative Commons BY-NC-ND 3.0 ，转载请注明作者及出处">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Spencer">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Clean Code - Chapter 6  对象与数据结构"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="给立乐*"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Clean Code - Chapter 6  对象与数据结构 - 给立乐*</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/bootstrap-3.3.6.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/font-awesome-4.6.3.min.css" rel="stylesheet" type="text/css">
+    
+    <!-- <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"> -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/google-font-1.css" rel="stylesheet" type="text/css">
+    
+    <!-- <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"> -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/google-font-2.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/featherlight-1.3.5.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-65158169-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">给立乐* Android 开发者</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/ChinaSunHZ/">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://7xjqw5.com1.z0.glb.clouddn.com/theme/image/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Clean Code - Chapter 6  对象与数据结构</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2016-12-04 00:45
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/Clean-Code/">#Clean Code</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>作者：给立乐*<br>出处：<a href="http://spencer-dev.com/2016/12/4/Clean Code - Chapter 6  对象与数据结构">http://spencer-dev.com/2016/12/4/Clean Code - Chapter 6  对象与数据结构</a><br>声明：本文采用以下协议进行授权： 自由转载-非商用-非衍生-保持署名|<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="external">Creative Commons BY-NC-ND 3.0</a> ，转载请注明作者及出处。</p>
+<h1 id="对象和数据结构"><a href="#对象和数据结构" class="headerlink" title="对象和数据结构"></a>对象和数据结构</h1><p>将变量设置为私有（private）有一个理由：我们不想其他人依赖这些变量。我们还想在心血来潮时能自由修改其类型或实现。那么，为什么还是有那么多程序员给对象自动添加赋值器和取值器，将私有变量公之于众、如同它们根本就是公共变量一般呢？</p>
+<h2 id="数据抽象"><a href="#数据抽象" class="headerlink" title="数据抽象"></a>数据抽象</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 6-1</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">double</span> x;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">double</span> y;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 6-2</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Point</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">double</span> <span class="title">getX</span><span class="params">()</span></span>;</div><div class="line">  <span class="function"><span class="keyword">double</span> <span class="title">getY</span><span class="params">()</span></span>;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">setCartesian</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">double</span> y)</span></span>;</div><div class="line">  <span class="function"><span class="keyword">double</span> <span class="title">getR</span><span class="params">()</span></span>;</div><div class="line">  <span class="function"><span class="keyword">double</span> <span class="title">getTheta</span><span class="params">()</span></span>;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">setPolar</span><span class="params">(<span class="keyword">double</span> r, <span class="keyword">double</span> theta)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这两段代码，都代表了笛卡尔平面上的点。不过，其中一段暴露了其实现，而另一个则完全隐藏了实现。</p>
+<p>代码 6-2 的漂亮之处在于，你不知道该实现会是在矩形坐标系中还是在极坐标系中。可能两个都不是！然而，该借口还是明白无误地呈现了一种数据结构。</p>
+<p>不过它呈现的还不只是一个数据结构。那些方法固定了一套存储策略。你可以单独取某个坐标，但必须通过一次原子操作设定所有坐标。</p>
+<p>而代码 6-1 中，则非常清楚地是在矩形坐标系中实现的，并要求我们单个操作那些坐标。这就暴露了实现。实际上，即便变量都是私有的，而且我们也通过变量取值器和赋值器使用变量，其实现仍然暴露了。</p>
+<p>隐藏实现并非只是在变量上放一个函数层那么简单。隐藏实现关乎抽象！类并不简单地用取值器和赋值器将其变量推向外间，而是暴露抽象借口，以便用户无需了解数据的实现就能操作数据本体。</p>
+<p>看看代码 6-3 和 6-4。前者使用具象手段与机动车的燃料层通信，而后者采用百分比抽象。你能确定前者里面都是些变量的存取器，而却无法得知后者中的数据形态。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 6-3</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Vehicle</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">double</span> <span class="title">getFuelTankCapacityInGallons</span><span class="params">()</span></span>;</div><div class="line">  <span class="function"><span class="keyword">double</span> <span class="title">getGallonsOfGasoline</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 6-4</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Vehicle</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">double</span> <span class="title">getPercentFuelRemaining</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上两段代码以后者为佳。我们不愿暴露数据细节，更愿意以抽象形态表述数据。这并不只是用接口和／或赋值器、取值器就万事大吉。要以最好的方式呈现某个对象包含的数据，需要作严肃的思考。傻乐着乱加取值器和赋值器，是最坏的选择。</p>
+<h2 id="数据、对象的反对称性"><a href="#数据、对象的反对称性" class="headerlink" title="数据、对象的反对称性"></a>数据、对象的反对称性</h2><p>下面两个例子展示了对象与数据结构之间的差异。对象把数据隐藏于抽象之后，曝露操作数据的函数。数据结构曝露其数据，没有提供有意义的函数。回过头再读一遍。留意这两种定义的本质。它们是对立的。这种差异貌似微小，但却有深远的含义。</p>
+<p>Geometry 类操作三个形状类。形状类都是简单的数据结构，没有任何行为。所有行为都在 Geometry 类中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 6-5 过程式形状代码</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Square</span> </span>&#123;</div><div class="line">  <span class="keyword">public</span> Point topLeft;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">double</span> side;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> </span>&#123;</div><div class="line">  <span class="keyword">public</span> Point topLeft;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">double</span> height;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">double</span> width;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> </span>&#123;</div><div class="line">  <span class="keyword">public</span> Point center;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">double</span> radius;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Geometry</span> </span>&#123;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">double</span> PI = <span class="number">3.141592653589793</span>;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">area</span><span class="params">(Object shape)</span> <span class="keyword">throws</span> NoSuchShapeException </span>&#123;</div><div class="line">    <span class="keyword">if</span> (shape <span class="keyword">instanceof</span> Square) &#123;</div><div class="line">        Square s = (Square)shape;</div><div class="line">        <span class="keyword">return</span> s.side * s.side;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (shape <span class="keyword">instanceof</span> Rectangle) &#123;</div><div class="line">        Rectangle r = (Rectangle)shape;</div><div class="line">        <span class="keyword">return</span> r.height * r.width;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (shape <span class="keyword">instanceof</span> Circle) &#123;</div><div class="line">        Circle c = (Circle)shape;</div><div class="line">        <span class="keyword">return</span> PI * c.radius * c.radius;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchShapeException();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>面向对象程序员可能会对此嗤之以鼻，抱怨说这是过程式代码——他们大概是对的，不过这种嘲笑并不完全正确。想想看，如果给 Geometry 类添加一个 primeter() 函数会怎样。那些形状类根本不会因此而受影响！另一方面，如果添加一个新形状，就得修改 Geometry 中的所有函数来处理它。再读一遍代码。注意，这两种情形也是直接对立的。</p>
+<p>现在来看看代码 6-6 中的面向对象方案。这里，area() 方法是多态的。不需要有 Geomerty 类。所以，如果添加一个新的形状，现有的函数一个也不会受到影响，而当添加新函数时所有的形状都得做修改。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 6-6 多态式形状</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">square</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> Point topLeft;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">double</span> side;</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">double</span> <span class="title">area</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> side * side;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> Point topLeft;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">double</span> height;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">double</span> wdith;</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">double</span> <span class="title">area</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> height * width;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> Point center;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">double</span> radius;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">double</span> PI = <span class="number">3.141592653589793</span>;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">area</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> PI * radius * radius;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们再次看到这两种定义的本质；它们是<em>截然对立</em>的。这说明了对象与数据结构之间的二分原理：</p>
+<p><strong>过程式代码（使用数据结构的代码）便于在不改动既有数据结构的前提下添加新函数。面向对象代码便于在不改既有函数的前提下添加新的类。</strong></p>
+<p>反过来讲也说得通：</p>
+<p><strong>过程式代码难以添加新数据结构，因为必须修改所有函数。面向对象代码难以添加新的函数，因为必须修改所有类。</strong></p>
+<p>所以，对于面向对象较难的事，对于过程式代码却较容易，反之亦然！</p>
+<p>在任何一个复杂系统中，都会有添加新数据类型而不是新函数的时候。这时，对象和面向对象就比较合适。另一方面，也会有想要添加新函数而不是数据类型的时候。在这种情况下，过程式代码和数据结构更合适。</p>
+<h2 id="得墨忒耳律"><a href="#得墨忒耳律" class="headerlink" title="得墨忒耳律"></a><a href="https://zh.wikipedia.org/wiki/%E5%BE%97%E5%A2%A8%E5%BF%92%E8%80%B3%E5%AE%9A%E5%BE%8B" target="_blank" rel="external">得墨忒耳律</a></h2><p>著名的得墨忒耳律（The Law of Demeter）认为，模块不应了解它所操作对象的内部情形。如上节所见，对象隐藏数据，曝露操作。这意味着对象不应通过存取器曝露其内部结构，因为这样更像是曝露而非隐藏其内部结构。</p>
+<p>这里介绍一下 <strong>得墨忒耳律</strong>。</p>
+<ol>
+<li>每个单元对于其他的单元只能拥有有限的知识：只是与当前单元紧密联系的单元；</li>
+<li>每个单元只能和它的朋友交谈：不能和陌生单元交谈；</li>
+<li>只和自己直接的朋友交谈。</li>
+</ol>
+<p>举个例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 6-7</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> B b = <span class="keyword">new</span> B();</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">methodA</span><span class="params">(C c)</span> </span>&#123;</div><div class="line">    methodB(); <span class="comment">// 该对象自己拥有的方法,可调用</span></div><div class="line"></div><div class="line">    b.print(); <span class="comment">// 该对象直接拥有的对象的方法,可调用</span></div><div class="line"></div><div class="line">    c.print(); <span class="comment">// 传入该方法的参数的方法,可调用</span></div><div class="line">    </div><div class="line">    D d = <span class="keyword">new</span> D();</div><div class="line">    d.print(); <span class="comment">// 该方法创建的对象的方法,可调用</span></div><div class="line"></div><div class="line">    E e = b.getE();</div><div class="line">    e.print(); <span class="comment">// 该对象依赖对象的实现的模块,不可调用!</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">methodB</span><span class="params">()</span> </span>&#123;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>回归正题。</p>
+<p>下列代码就违反了得墨忒耳律（除了违反其他规则之外）。</p>
+<p>因为它调用了 getOptions() 返回值的 getScratchDir() 函数，又调用了 getScratchDir() 返回值的 getAbsolutePath() 方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 6-8</span></div><div class="line"><span class="keyword">final</span> String outputDir = ctxt.getOptions().getScratchDir().getAbsolutePath();</div></pre></td></tr></table></figure>
+<h3 id="火车失事"><a href="#火车失事" class="headerlink" title="火车失事"></a>火车失事</h3><p>这类代码常被称作火车失事，因为它看起来就像是一列火车。这类连串的调用通常被认为是肮脏的风格，应该避免。最好做类似如下的切分：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 6-9</span></div><div class="line">Options opts = ctxt.getOptions();</div><div class="line">File scratchDir = opts.getScratchDir();</div><div class="line"><span class="keyword">final</span> String outputDir = scratchDir.getAbsolutePath();</div></pre></td></tr></table></figure>
+<p>上列代码是否违反了得墨忒耳律呢？当然了，模块知道 ctxt 对象包含多个选项，每个选项中都有一个临时目录，而每个临时目录都有一个绝对路径。对于一个函数，这些知识真够丰富的。调用函数懂得如何在一大堆不同对象间浏览。</p>
+<p>这些代码是否违反得墨忒耳律，取决于 ctxt、Options 和 ScratchDir 是对象还是数据结构。如果是对象，则它们的内部结构应当隐藏而不曝露，而有关其内部细节的知识就明显违反了得墨忒耳律。如果 ctxt、Options 和 ScratchDir 只是数据结构，没有任何行为，则它们自然会曝露其内部结构，得墨忒耳律也就不适用了。</p>
+<p>属性访问器函数的使用把问题搞复杂了。如果像下面这样写代码，我们大概就不会提及对得墨忒耳律的违反。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 6-10</span></div><div class="line"><span class="keyword">final</span> String outputDir = ctxt.options.scratchDir.absolutePath;</div></pre></td></tr></table></figure>
+<p>如果数据结构简单地拥有公共变量，没有函数，而对象则拥有私有变量和公共函数，这个问题就不那么混淆。然而，有些框架和标准甚至要求最简单的数据结构都要有访问器和改值器。</p>
+<h3 id="混杂"><a href="#混杂" class="headerlink" title="混杂"></a>混杂</h3><p>这种混淆有时会不幸导致混合结构，一半是对象，一半是数据结构。这种结构拥有执行操作的函数，也有公共变量或公共访问器及改值器。无论出于怎样的初衷，公共访问器及改值器都把私有变量公开化，诱导外部函数以过程式程序使用数据结构的方式使用这些变量。</p>
+<p>此类混杂增加了添加新函数的难度，也增加了添加新数据结构的难度，两面不讨好。应避免创造这种结构。它们的出现，展示了一种乱七八糟的设计，其作者不确定——或者更糟糕，完全无视——他们是否需要函数或类型的保护。</p>
+<h3 id="隐藏结构"><a href="#隐藏结构" class="headerlink" title="隐藏结构"></a>隐藏结构</h3><p>假使 ctxt、Options 和 ScratchDir 是拥有真实行为的对象又怎样呢？由于对象应隐藏其内部结构，我们就不该能够看到内部结构。这样一来，如何才能取得临时目录的绝对路径呢？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 6-11</span></div><div class="line">ctxt.getAbsolutePathOfScratchDirectoryOption();</div></pre></td></tr></table></figure>
+<p>或者<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 6-12</span></div><div class="line">ctxt.getScratchDirectoryOption().getAbsolutePath();</div></pre></td></tr></table></figure></p>
+<p>第一种方案可能导致 ctxt 对象中方法的曝露。</p>
+<p>第二种方案是在假设 getScratchDirectoryOption() 返回一个数据结构而非对象。</p>
+<p>两种方案感觉都不好。</p>
+<p>如果 ctxt 是个对象，就应该要求它做点什么，不该要求它给出内部情形。那我们为何还要得到临时目录的绝对路径呢？我们要它做什么？来看看这段代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 6-13</span></div><div class="line">String outFile = outputDir + <span class="string">"/"</span> + className.replace(<span class="string">'.'</span>,<span class="string">'/'</span>) + <span class="string">".class"</span>;</div><div class="line">FileOutputStream fout = <span class="keyword">new</span> FileOutputStream(outFile);</div><div class="line">BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(fout);</div></pre></td></tr></table></figure>
+<p>这种不同层级细节的混杂有点麻烦。句点、斜杠、文件扩展名和 File 对象不该如此随便地混杂到一起。不过，撇开这些毛病，我们发现，取得临时目录绝对路径的初衷是为了创建指定名称的临时文件。</p>
+<p>所以，直接让 ctxt 对象来做这事如何？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 6-14</span></div><div class="line">BufferedOutputStream bos = ctxt.createScratchFileStream(classFileName);</div></pre></td></tr></table></figure>
+<p>这下看起来像是个对象做的事了！ctxt 隐藏了其内部结构，防止当前函数因浏览它不该知道的对象而违反得墨忒耳律。</p>
+<h2 id="数据传送对象"><a href="#数据传送对象" class="headerlink" title="数据传送对象"></a>数据传送对象</h2><p>最为精练的数据结构，是一个只有公共变量、没有函数的类。这种数据结构有时被称为数据传送对象，或 DTO（Data Transfer Objects）。DTO 是非常有用的结构，尤其是在与数据库通信、或解析套接字传递的消息之类场景中。在应用程序代码里一系列将原始数据转换为数据库的翻译过程中，它们往往是排头兵。</p>
+<p>更常见的是如代码清单 6-15 所示的 Bean 结构。Bean 结构拥有由赋值器和取值器操作的私有变量。对 Bean 结构的半封装会让某些 OO 纯化论者感觉舒服些，不过通常没有其他好处。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 6-15</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Address</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> String street;</div><div class="line">  <span class="keyword">private</span> String streetExtra;</div><div class="line">  <span class="keyword">private</span> String city;</div><div class="line">  <span class="keyword">private</span> String state;</div><div class="line">  <span class="keyword">private</span> String zip;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Address</span><span class="params">(String street, String streetExtra, String city, String state, String zip)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.street = street;</div><div class="line">    <span class="keyword">this</span>.streetExtra = streetExtra;</div><div class="line">    <span class="keyword">this</span>.city = city;</div><div class="line">    <span class="keyword">this</span>.state = state;</div><div class="line">    <span class="keyword">this</span>.zip = zip;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getStreet</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> street;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getStreetExtra</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> streetExtra;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getCity</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> city;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getState</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> state;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getZip</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> zip;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>Active Record</strong></p>
+<p>Active Record 是一种特殊的 DTO 形式。他们是拥有公共（或 bean 式访问的）变量的数据结构，但通常也会拥有类似 save 和 find 这样的可浏览方法。Active Record 一般是对数据库表或其他数据源的直接翻译。</p>
+<p>我们却经常发现开发者往这类数据结构中塞进业务规则方法，把这类数据结构当成对象来用。这是不智的行为，因为它导致了数据结构和对象的混杂体。</p>
+<p>当然，解决方案就是把 Active Record 当做数据结构，并创建包含业务规则、隐藏内部数据（可能就是 Active Record 的实体）的独立对象。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>对象曝露行为，隐藏数据。便于添加新对象类型而无需修改既有行为，同时也难以在既有对象中添加新行为。数据结构曝露数据，没有明显的行为。便于向既有数据结构添加新行为，同时也难以向既有函数添加新数据结构。</p>
+<p>在任何系统中，我们有时会希望能够灵活地添加新数据类型，所以更喜欢在这部分使用对象。另外一些时候，我们希望能灵活地添加新行为，这时我们更喜欢使用数据类型和过程。优秀的软件开发者不带成见地了解这种情形，并依据手边工作的性质选择其中一种手段。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                   
+                        <li>
+                            <a href="https://github.com/ChinaSunHZ/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="http://weibo.com/shz272119494" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://twitter.com/ChinaSunHZ" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://www.facebook.com/ChinaSunHZ" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://cn.linkedin.com/in/浩臻-孙-0208ba94" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="mailto:China.SunhZ@Gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <!--
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="http://7xjqw5.com1.z0.glb.clouddn.com/theme/js/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="http://7xjqw5.com1.z0.glb.clouddn.com/theme/js/bootstrap-3.3.6.min.js"></script>
+
+<!-- Gallery -->
+<script src="http://7xjqw5.com1.z0.glb.clouddn.com/theme/js/featherlight-1.3.5.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'spencer-dev-com';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>
