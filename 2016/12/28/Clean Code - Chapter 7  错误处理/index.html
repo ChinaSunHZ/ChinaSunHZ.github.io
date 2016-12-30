@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="作者：给立乐*出处：http://spencer-dev.com/2016/12/04/Clean Code - Chapter 7  错误处理声明：本文采用以下协议进行授权： 自由转载-非商用-非衍生-保持署名|Creative Commons BY-NC-ND 3.0 ，转载请注明作者及出处。
+">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Spencer">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Clean Code - Chapter 7  错误处理"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="给立乐*"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Clean Code - Chapter 7  错误处理 - 给立乐*</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/bootstrap-3.3.6.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/font-awesome-4.6.3.min.css" rel="stylesheet" type="text/css">
+    
+    <!-- <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"> -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/google-font-1.css" rel="stylesheet" type="text/css">
+    
+    <!-- <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"> -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/google-font-2.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/featherlight-1.3.5.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-65158169-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">给立乐* Android 开发者</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/ChinaSunHZ/">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://7xjqw5.com1.z0.glb.clouddn.com/theme/image/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Clean Code - Chapter 7  错误处理</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2016-12-28 21:23
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/Clean-Code/">#Clean Code</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>作者：给立乐*<br>出处：<a href="http://spencer-dev.com/2016/12/28/Clean Code - Chapter 7  错误处理">http://spencer-dev.com/2016/12/04/Clean Code - Chapter 7  错误处理</a><br>声明：本文采用以下协议进行授权： 自由转载-非商用-非衍生-保持署名|<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="external">Creative Commons BY-NC-ND 3.0</a> ，转载请注明作者及出处。</p>
+<h1 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h1><p>错误处理只不过是编程时必须要做的事之一。输入可能出现异常，设备可能失效。简言之，可能会出错，当错误发生时，程序员就有责任确保代码照常工作。</p>
+<p>然而，应该弄清楚错误处理与整洁代码的关系。许多程序完全由错误处理所占据。所谓占据，并不是说错误处理就是全部。我的意思是几乎无法看明白代码所做的事，因为到处都是凌乱的错误处理代码。错误处理很重要，但如果它搞乱了代码逻辑，就是错误的做法。</p>
+<p>在本章中，我将概要列出编写既整洁又强固的代码——雅致地处理错误代码的一些技巧和思路。</p>
+<h2 id="使用异常而非返回码"><a href="#使用异常而非返回码" class="headerlink" title="使用异常而非返回码"></a>使用异常而非返回码</h2><p>在很久以前，许多语言都不支持异常。这些语言处理和汇报错误的手段都有限。你要么设置一个错误标识，要么返回给调用者检查的错误码。</p>
+<p>代码 7-1 种展示了这些手段。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 7-1</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeviceController</span> </span>&#123; ...</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendShutDown</span><span class="params">()</span> </span>&#123; </div><div class="line">        DeviceHandle handle = getHandle(DEV1); </div><div class="line">  		<span class="comment">// Check the state of the device</span></div><div class="line">        <span class="keyword">if</span> (handle != DeviceHandle.INVALID) &#123;</div><div class="line">            <span class="comment">// Save the device status to the record field </span></div><div class="line">            retrieveDeviceRecord(handle);</div><div class="line">            <span class="comment">// If not suspended, shut down</span></div><div class="line">            <span class="keyword">if</span> (record.getStatus() != DEVICE_SUSPENDED) &#123;</div><div class="line">                pauseDevice(handle); </div><div class="line">                clearDeviceWorkQueue(handle); </div><div class="line">                closeDevice(handle); </div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                logger.log(<span class="string">"Device suspended. Unable to shut down"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            logger.log(<span class="string">"Invalid handle for: "</span> + DEV1.toString()); </div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">... </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这类手段的问题在于，它们搞乱了调用者代码。调用者必须在调用之后即刻检查错误。不幸的是，这个步骤很容易被遗忘。所以，遇到错误时，最好抛出一个异常。调用代码很整洁，其逻辑不会被错误处理搞乱。</p>
+<p>代码 7-2 展示了在方法中遇到错误抛出异常的情形。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 7-2</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeviceController</span> </span>&#123; </div><div class="line">    ...</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendShutDown</span><span class="params">()</span> </span>&#123; </div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            tryToShutDown();</div><div class="line">        &#125; <span class="keyword">catch</span> (DeviceShutDownError e) &#123;</div><div class="line">            logger.log(e); </div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">tryToShutDown</span><span class="params">()</span> <span class="keyword">throws</span> DeviceShutDownError </span>&#123; </div><div class="line">        DeviceHandle handle = getHandle(DEV1);</div><div class="line">        DeviceRecord record = retrieveDeviceRecord(handle);</div><div class="line">        pauseDevice(handle); </div><div class="line">        clearDeviceWorkQueue(handle); </div><div class="line">        closeDevice(handle);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">private</span> DeviceHandle <span class="title">getHandle</span><span class="params">(DeviceID id)</span> </span>&#123; </div><div class="line">        ...</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> DeviceShutDownError(<span class="string">"Invalid handle for: "</span> + id.toString());</div><div class="line">        ... </div><div class="line">    &#125;</div><div class="line">... </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意这段代码整洁了很多。这不仅关乎美观。这段代码更好，因为之前纠结的两个元素设备关闭算法和错误处理现在被隔离了。你可以查看其中任一元素，分别理解它。</p>
+<h2 id="先写-Try-Catch-Finally-语句"><a href="#先写-Try-Catch-Finally-语句" class="headerlink" title="先写 Try-Catch-Finally 语句"></a>先写 Try-Catch-Finally 语句</h2><p>异常的妙处之一是，它们在程序中定义了一个范围。执行 try-catch-finally 语句中 try 部分的代码时，你是在表明可随时取消执行，并在 catch 语句中接续。</p>
+<p>在某种意义上，try 代码块就像是事务。catch 代码块将程序维持在一种持续状态，无论 try 代码块中发生了什么均如此。所以，在编写可能抛出异常的代码时，最好先写出 try-catch-finally 语句。这能帮你定义代码的用户应该期待什么，无论 try 代码块中执行的代码出什么错都一样。</p>
+<h2 id="使用不可控异常"><a href="#使用不可控异常" class="headerlink" title="使用不可控异常"></a>使用不可控异常</h2><p>辩论业已结束。多年来，Java 程序员们一直在争论可控异常（checkedexception）的利与弊。Java 的第一个版本中引入可控异常时，看似一个极好的点子。每个方法的签名都列出它可能传递给调用者的异常。而且，这些异常就是方法类型的一部分。如果签名与代码实际所做之事不符，代码在字面上就无法编译。</p>
+<p>那时，我们认为可控异常是个绝妙的主意；而且，它也有所裨益。然而，现在已经很清楚，对于强固软件的生产，它并非必需。C# 不支持可控异常。尽管做过勇敢的尝试，C 最后也不支持可控异常。Python 和 Ruby 同样如此。不过，用这些语言也有可能写出强固的软件。我们得决定——的确如此——可控异常是否值回票价。</p>
+<p>代价是什么？可控异常的代价就是违反<a href="https://zh.wikipedia.org/wiki/%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99" target="_blank" rel="external">开放/闭合原则</a>。如果你在方法中抛出可控异常，而 catch 语句在三个层级之上，你就得在 catch 语句和抛出异常处之间的每个方法签名中声明该异常。这意味着对软件中较低层级的修改，都将波及较高层级的签名。修改好的模块必须重新构建、发布，即便它们自身所关注的任何东西都没改动过。</p>
+<p>以某个大型系统的调用层级为例。顶端函数调用它们之下的函数，逐级向下。假设某个位于最底层级的函数被修改为抛出一个异常。如果该异常是可控的，则函数签名就要添加 throw 子句。这意味着每个调用该函数的函数都要修改，捕获新异常，或在其签名中添加合适的 throw 子句。以此类推。最终得到的就是一个从软件最底端贯穿到最高端的修改链！封装被打破了，因为在抛出路径中的每个函数都要去了解下一层级的异常细节。既然异常旨在让你能在较远处处理错误，可控异常以这种方式破坏封装简直就是一种耻辱。</p>
+<p>如果你在编写一套关键代码库，则可控异常有时也会有用：你必须捕获异常。但对于一般的应用开发，其依赖成本要高于收益。</p>
+<h2 id="给出异常发生的环境说明"><a href="#给出异常发生的环境说明" class="headerlink" title="给出异常发生的环境说明"></a>给出异常发生的环境说明</h2><p>你抛出的每个异常，都应当提供足够的环境说明，以便判断错误的来源和处所。在 Java 中，你可以从任何异常里得到堆栈踪迹（stacktrace）；然而，堆栈踪迹却无法告诉你该失败操作的初衷。</p>
+<p>应创建信息充分的错误消息，并和异常一起传递出去。在消息中，包括失败的操作和失败类型。如果你的应用程序有日志系统，传递足够的信息给 catch 块，并记录下来。</p>
+<h2 id="依调用者需要定义异常类"><a href="#依调用者需要定义异常类" class="headerlink" title="依调用者需要定义异常类"></a>依调用者需要定义异常类</h2><p>对错误分类有很多方式。可以依其来源分类：是来自组件还是其他地方？或依其类型分类：是设备错误、网络错误还是编程错误？不过，当我们在应用程序中定义异常类时，最重要的考虑应该是它们如何被捕获。</p>
+<p>来看一个不太好的异常分类例子。下面的 try-catch-finally 语句是对某个第三方代码库的调用。它覆盖了该调用可能抛出的所有异常：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 7-3</span></div><div class="line">ACMEPort port = <span class="keyword">new</span> ACMEPort(<span class="number">12</span>);</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">    port.open();</div><div class="line">&#125; <span class="keyword">catch</span> (DeviceResponseException e) &#123;</div><div class="line">    reportPortError(e);</div><div class="line">    logger.log(<span class="string">"Device response exception"</span>, e);</div><div class="line">&#125; <span class="keyword">catch</span> (ATM1212UnlockedException e) &#123;</div><div class="line">    reportPortError(e);</div><div class="line">    logger.log(<span class="string">"Unlock exception"</span>, e);</div><div class="line">&#125; <span class="keyword">catch</span> (GMXError e) &#123;</div><div class="line">    reportPortError(e);</div><div class="line">    logger.log(<span class="string">"Device response exception"</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">finally</span> &#123;</div><div class="line">    …</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>语句包含了一大堆重复代码，这并不出奇。在大多数异常处理中，不管真实原因如何，我们总是做相对标准的处理。我们得记录错误，确保能继续工作。</p>
+<p>在本例中，既然知道我们所做的事不外如此，就可以通过打包调用API、确保它返回通用异常类型，从而简化代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 7-4</span></div><div class="line">LocalPort port = <span class="keyword">new</span> LocalPort(<span class="number">12</span>);</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">    port.open();</div><div class="line">&#125;</div><div class="line"><span class="keyword">catch</span> (PortDeviceFailure e) &#123;</div><div class="line">    reportError(e);</div><div class="line">    logger.log(e.getMessage(), e);</div><div class="line">&#125;</div><div class="line"><span class="keyword">finally</span> &#123;</div><div class="line">    …</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>LocalPort 类就是个简单的打包类，捕获并翻译由 ACMEPort 类抛出的异常：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 7-5</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LocalPort</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> ACMEPort innerPort;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LocalPort</span><span class="params">(<span class="keyword">int</span> portNumber)</span> </span>&#123;</div><div class="line">        innerPort = <span class="keyword">new</span> ACMEPort(portNumber);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">open</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            innerPort.open();</div><div class="line">        &#125; <span class="keyword">catch</span> (DeviceResponseException e) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> PortDeviceFailure(e);</div><div class="line">        &#125; <span class="keyword">catch</span> (ATM1212UnlockedException e) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> PortDeviceFailure(e);</div><div class="line">        &#125; <span class="keyword">catch</span> (GMXError e) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> PortDeviceFailure(e);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    …</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>类似我们为 ACMEPort 定义的这种打包类非常有用。实际上，将第三方 API 打包是个良好的实践手段。当你打包一个第三方 API，你就降低了对它的依赖：未来你可以不太痛苦地改用其他代码库。在你测试自己的代码时，打包也有助于模拟第三方调用。</p>
+<p>打包的好处还在于你不必绑死在某个特定厂商的 API 设计上。你可以定义自己感觉舒服的 API。在上例中，我们为 port 设备错误定义了一个异常类型，然后发现这样能写出更整洁的代码。</p>
+<p>对于代码的某个特定区域，单一异常类通常可行。伴随异常发送出来的信息能够区分不同错误。如果你想要捕获某个异常，并且放过其他异常，就使用不同的异常类。</p>
+<h2 id="定义常规流程"><a href="#定义常规流程" class="headerlink" title="定义常规流程"></a>定义常规流程</h2><p>如果你遵循前文提及的建议，在业务逻辑和错误处理代码之间就会有良好的区隔。大量代码会开始变得像是整洁而简朴的算法。然而，这样做却把错误检测推到了程序的边缘地带。你打包了外部 API 以抛出自己的异常，你在代码的顶端定义了一个处理器来应付任何失败了的运算。在大多数时候，这种手段很棒，不过有时你也许不愿这么做。</p>
+<p>来看个例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 7-6</span></div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">    MealExpenses expenses = expenseReportDAO.getMeals(employee.getID());</div><div class="line">    m_total += expenses.getTotal();</div><div class="line">&#125; <span class="keyword">catch</span>(MealExpensesNotFound e) &#123;</div><div class="line">    m_total += getMealPerDiem();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>业务逻辑是，如果消耗了餐食，则计入总额中。如果没有消耗，则员工得到当日餐食补贴。异常打断了业务逻辑。如果不去处理特殊情况会不会好一些？那样的话代码看起来会更简洁。就像这样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 7-7</span></div><div class="line">MealExpenses expenses = expenseReportDAO.getMeals(employee.getID());</div><div class="line">m_total += expenses.getTotal();</div></pre></td></tr></table></figure>
+<p>能把代码写得那样简洁吗？能。可以修改 ExpenseReportDAO，使其总是返回 MealExpense 对象。如果没有餐食消耗，就返回一个返回餐食补贴的 MealExpense 对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 7-8</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PerDiemMealExpenses</span> <span class="keyword">implements</span> <span class="title">MealExpenses</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getTotal</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">// return the per diem default</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这种手法叫做特例模式（<a href="http://martinfowler.com/eaaCatalog/specialCase.html" target="_blank" rel="external">SPECIAL CASE PATTERN，[Fowler]</a>）。创建一个类或配置一个对象，用来处理特例。你来处理特例，客户代码就不用应付异常行为了。异常行为被封装到特例对象中。</p>
+<h2 id="别返回-null-值"><a href="#别返回-null-值" class="headerlink" title="别返回 null 值"></a>别返回 null 值</h2><p>我认为，要讨论错误处理，就一定要提及那些容易引发错误的做法。第一项就是返回 null 值。我不想去计算曾经见过多少几乎每行代码都在检查 null 值的应用程序。下面就是个例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 7-9</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerItem</span><span class="params">(Item item)</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span>(item != <span class="keyword">null</span>) &#123;</div><div class="line">    ItemRegistry registry = peristentStore.getItemRegistry();</div><div class="line">    <span class="keyword">if</span>(registry != <span class="keyword">null</span>) &#123;</div><div class="line">      Item existing = registry.getItem(item.getID());</div><div class="line">      <span class="keyword">if</span>(existing.getBillingPeriod().hasRetailOwner()) &#123;</div><div class="line">        existing.register(item);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这种代码看似不坏，其实糟透了！返回 null 值，基本上是在给自己增加工作量，也是在给调用者添乱。只要有一处没检查 null 值，应用程序就会失控。</p>
+<p>你有没有注意到，嵌套 if 语句的第二行没有检查 null 值？如果在运行时 persistentStore 为 null 会发生什么事？我们会在运行时得到一个 NullPointerException 异常，也许有人在代码顶端捕获这个异常，也可能没有捕获。两种情况都很糟糕。对于从应用程序深处抛出的 NullPointerException 异常，你到底该作何反应呢？</p>
+<p>可以敷衍说上列代码的问题是少做了一次 null 值检查，其实问题多多。如果你打算在方法中返回 null 值，不如抛出异常，或是返回特例对象。如果你在调用某个第三方 API 中可能返回 null 值的方法，可以考虑用新方法打包这个方法，在新方法中抛出异常或返回特例对象。</p>
+<p>在许多情况下，特例对象都是爽口良药。设想有这么一段代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 7-10</span></div><div class="line">List&lt;Employee&gt; employees = getEmployees();</div><div class="line"><span class="keyword">if</span>(employees != <span class="keyword">null</span>) &#123;</div><div class="line">  <span class="keyword">for</span>(Employee e : employees) &#123;</div><div class="line">    totalPay += e.getPay();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在，getExployees 可能返回 null，但是否一定要这么做呢？如果修改 getEmployee，返回空列表，就能使代码整洁起来：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 7-11</span></div><div class="line">List&lt;Employee&gt; employees = getEmployees();</div><div class="line"><span class="keyword">for</span>(Employee e : employees) &#123;</div><div class="line">  totalPay += e.getPay();</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>所幸 Java 有 Collections.emptyList() 方法，该方法返回一个预定义不可变列表，可用于这种目的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 7-12</span></div><div class="line"><span class="function"><span class="keyword">public</span> List&lt;Employee&gt; <span class="title">getEmployees</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span>(.. there are employees ..) &#123;</div><div class="line">    <span class="keyword">return</span> Collections.emptyList();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样编码，就能尽量避免  NullPointException 的出现，代码也就更整洁了。</p>
+<h2 id="别传递-null-值"><a href="#别传递-null-值" class="headerlink" title="别传递 null 值"></a>别传递 null 值</h2><p>在方法中返回 null 值是糟糕的做法，但将 null 值传递给其他方法就更糟糕了。除非 API 要求你向它传递 null 值，否则就要尽可能避免传递 null 值。</p>
+<p>举例说明原因。用下面这个简单的方法计算两点的投射：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 7-13</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MetricsCalculator</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">xProjection</span><span class="params">(Point p1, Point p2)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> (p2.x - p1.x) * <span class="number">1.5</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果有人传入 null 值会怎样？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 7-14</span></div><div class="line">calculator.xProjection(<span class="keyword">null</span>, <span class="keyword">new</span> Point(<span class="number">12</span>,<span class="number">13</span>));</div></pre></td></tr></table></figure>
+<p>当然，我们会得到一个 NullPointException 异常。</p>
+<p>如何修正？可以创建一个新的异常类型并抛出。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 7-15</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MetricsCalculator</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">xProjection</span><span class="params">(Point p1, Point p2)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span>(p1 == <span class="keyword">null</span> || p2 == <span class="keyword">null</span>) &#123;</div><div class="line">      <span class="keyword">throw</span> InvalidArgumentException(<span class="string">"Invalid argument for MetricsCalculator.xProjection"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> (p2.x - p1.x) * <span class="number">1.5</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样做好些吗？可能比 NullPointException 好点，但要记住，我们还得为 InvalidArgumentException 异常定义处理器。这个方案该做什么？还有更好的做法吗？</p>
+<p>还有替代方案。可以使用一组断言：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 7-16</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MetricsCalculator</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">xProjection</span><span class="params">(Point p1, Point p2)</span> </span>&#123;</div><div class="line">    <span class="keyword">assert</span> p1 != <span class="keyword">null</span> : <span class="string">"p1 should not be null"</span>;</div><div class="line">    <span class="keyword">assert</span> p2 != <span class="keyword">null</span> : <span class="string">"p2 should not be null"</span>;</div><div class="line">    <span class="keyword">return</span> (p2.x - p1.x) * <span class="number">1.5</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>看上去很美，但仍未解决问题。如果有人传入 null 值，还是会得到运行时错误。</p>
+<p>在大多数编程语言中，没有良好的方法能对付由调用者意外传入的 null 值。事已如此，恰当的做法就是禁止传入 null 值。这样，你在编码的时候，就会时时记住参数列表中的 null 值意味着出问题了，从而大量避免这种无心之失。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>整洁代码是可读的，但也要强固。可读与强固并不冲突。如果将错误处理隔离看待，独立于主要逻辑之外，就能写出强固而整洁的代码。做到这一步，我们就能单独处理它，也极大地提升了代码的可维护性。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>Kommentare:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                   
+                        <li>
+                            <a href="https://github.com/ChinaSunHZ/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="http://weibo.com/shz272119494" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://twitter.com/ChinaSunHZ" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://www.facebook.com/ChinaSunHZ" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://cn.linkedin.com/in/浩臻-孙-0208ba94" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="mailto:China.SunhZ@Gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <!--
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="http://7xjqw5.com1.z0.glb.clouddn.com/theme/js/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="http://7xjqw5.com1.z0.glb.clouddn.com/theme/js/bootstrap-3.3.6.min.js"></script>
+
+<!-- Gallery -->
+<script src="http://7xjqw5.com1.z0.glb.clouddn.com/theme/js/featherlight-1.3.5.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'spencer-dev-com';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>
