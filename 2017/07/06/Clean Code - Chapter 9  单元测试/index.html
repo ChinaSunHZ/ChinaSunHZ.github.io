@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="作者：给立乐*出处：http://spencer-dev.com/2017/07/06/Clean Code - Chapter 9  单元测试声明：本文采用以下协议进行授权： 自由转载-非商用-非衍生-保持署名|Creative Commons BY-NC-ND 3.0 ，转载请注明作者及出处。
+">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Spencer">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Clean Code - Chapter 9  单元测试"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="给立乐*"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Clean Code - Chapter 9  单元测试 - 给立乐*</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/bootstrap-3.3.6.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/font-awesome-4.6.3.min.css" rel="stylesheet" type="text/css">
+    
+    <!-- <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"> -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/google-font-1.css" rel="stylesheet" type="text/css">
+    
+    <!-- <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"> -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/google-font-2.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/featherlight-1.3.5.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-65158169-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">给立乐* Android 开发者</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/ChinaSunHZ/">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://7xjqw5.com1.z0.glb.clouddn.com/theme/image/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Clean Code - Chapter 9  单元测试</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2017-07-06 01:23
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/Clean-Code/">#Clean Code</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>作者：给立乐*<br>出处：<a href="http://spencer-dev.com/2017/07/06/Clean Code - Chapter 9  单元测试">http://spencer-dev.com/2017/07/06/Clean Code - Chapter 9  单元测试</a><br>声明：本文采用以下协议进行授权： 自由转载-非商用-非衍生-保持署名|<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="external">Creative Commons BY-NC-ND 3.0</a> ，转载请注明作者及出处。</p>
+<h1 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h1><p>过去十年以来，编程专业领域进步很大。1997年时，没人听说过测试驱动开发（TDD）。对于我们之中的大多数人来说，单元测试是那种用来确保程序“可运行”的用过即扔的短代码。我们辛勤地编写类和方法，在弄出一些特殊代码来测试它们。通常这会是种简单的驱动式程序，让我们能够手工与自己编写的程序交互。</p>
+<p>如今，我会编写测试，确保代码中每个犄角旮旯都如我所愿的工作。敏捷和 TDD 运动鼓舞了许多程序员编写自动化单元测试，每天还有更多人加入这个行列。但是，在争先恐后将测试加入规程中时，许多程序员遗漏了一些关于编写好测试的更细微但却更重要的点。</p>
+<h2 id="TDD-三定律"><a href="#TDD-三定律" class="headerlink" title="TDD 三定律"></a>TDD 三定律</h2><p>谁都知道 TDD 要求我们在编写生产代码前先编写单元测试。但这条规则只是冰山之巅。看看下列三定律：</p>
+<ul>
+<li>定律一，在编写不能通过的单元测试前，不可编写生产代码。</li>
+<li>定律二，只可编写刚好无法通过的单元测试，不能编译也不能通过。</li>
+<li>定律三，只可编写刚好通过当前失败测试的生产代码。</li>
+</ul>
+<p>这样三条定律将限制你在大概 30秒 一个的循环中。测试与生产代码一起编写，测试纸笔生产代码早写几秒钟。</p>
+<p>这样写程序，我们每天就会编写数十个测试，每个月编写数百个测试，每年编写数千个测试。这样写程序，测试将覆盖所有生产代码。测试代码量足以匹敌生产代码量，令导致令人生畏的管理问题。</p>
+<h2 id="保持测试整洁"><a href="#保持测试整洁" class="headerlink" title="保持测试整洁"></a>保持测试整洁</h2><p>有团队认为，测试代码的维护不应遵循生产代码的质量标准。他们彼此默许在单元测试中破坏规矩。“速而不周”成了团队格言。变量名用不好，测试函数不必短小和具有描述性。测试代码不必做良好设计和仔细划分。只要测试代码还能工作，只要覆盖着生产代码，这就足够好。</p>
+<p>从编写那种用后即扔的测试到编写全套自动化单元测试是一大进步。所以，就像那个团队一样，认为脏测试好过没测试。</p>
+<p>但这个团队没意识到的是，脏测试同于没测试，或者更甚。问题在于，测试必须随生产代码的演进而修改。测试越脏，就越难修改。测试代码越缠结，你就越有可能花更多时间塞进新测试，而不是编写新生产代码。修改生产代码后，旧测试就会开始失败，而测试代码中乱七八糟的东西将阻碍代码再次通过。于是测试变得就像是不断翻番的债务。</p>
+<p>随着版本递进，团队维护测试代码的代价也在上升。最终，它变成了开发者最大的抱怨对象。当经理们问及为何超支如此巨大，开发者们就归结于测试。最后他们只能扔掉整个测试代码。</p>
+<p>但是，没有了测试代码，他们就失去了确保对代码的改动能如愿工作的能力。没有了测试代码，他们就无法确保对系统某个部分的修改不会影响到系统的其他部分。故障率开始增加。随着并非出自有意的故障越来越多，他们开始害怕做改动。他们不在清理生产代码，因为他们害怕修改带来的损害多与收益。生产代码开始腐坏。最后，他们只剩下没有测试、纷乱而缺陷缠身的生产代码，沮丧的客户，还有对测试的失望。</p>
+<p>在某种意义上，他们说对了。测试的确让他们失望。不过是他们自己决定让测试变得乱七八糟，而那正是失败的根源。</p>
+<p>如果他们保持测试的整洁，测试就不会令他们失望。</p>
+<p>上面的事情说明，测试代码和生产代码一样重要。它需要被思考，被设计和被照料。它该像生产代码一般保持整洁。</p>
+<p>如果测试不能保持整洁，你就会失去它们。没有了测试，你就会失去保证生产代码可拓展的一切要素。你没看错。正是单元测试让你的代码可拓展、可维护、可复用。原因很简单。有了测试，你就不担心对代码的修改！没有测试，每次修改都可能带来缺陷。无论架构多有拓展性，无论设计划分的有多好，没有了测试，你就很难做改动，因为你担忧改动会引入不可预知的缺陷。</p>
+<p>有了测试，愁云一扫而空。测试覆盖率越高，你就越不担心。哪怕是对于那种架构并不优秀、设计晦涩纠缠的代码，你也能近乎没有后患的做修改。实际上，你能毫无顾忌地改进架构和设计！所以，覆盖了生产代码的自动化单元测试能尽可能地保持设计和架构的整洁。测试带来了一切好处，因为测试使改动变得可能。</p>
+<p>如果测试不干净，你该懂自己代码的能力就有所牵制，而你也会开始失去改进代码结构的能力。测试越脏，代码就会变得越脏。最终，你丢失了测试，代码开始腐坏。</p>
+<h2 id="整洁的测试"><a href="#整洁的测试" class="headerlink" title="整洁的测试"></a>整洁的测试</h2><p>整洁的测试有什么要素？有三个要素：可读性，可读性和可读性。在单元测试中，可读性甚至比生产代码中还重要。测试如何才能做到可读？和其他代码中一样：明确，简洁，还有足够的表达力。在测试中，你要以尽可能少的文字表达大量的内容。</p>
+<p>所以， 最佳规则也许是应该尽可能减少每个概念的断言数量，每个测试函数只测试一个概念。</p>
+<h2 id="F-I-R-S-T"><a href="#F-I-R-S-T" class="headerlink" title="F.I.R.S.T"></a>F.I.R.S.T</h2><p>整洁的测试还遵循以下 5 条规则，这 5 条规则的首字母构成了本节标题：</p>
+<ul>
+<li>快速（Fast），测试应该够快。测试应该能快速运行。测试运行缓慢，你就不会想要频繁的运行它。如果你不频繁的运行测试，就不能尽早发现问题，也无法轻易修正，从而也不能轻而易举地清理代码。最终，代码就会腐坏。</li>
+<li>独立（Independent），测试应该互相独立。某个测试不应为下一个测试设定条件。你应该可以独立运行每个测试，以及任何顺序运行测试。当测试互相依赖时，头一个没通过就会导致一连串的测试失败，是问题诊断变得困难，隐藏了下级错误。</li>
+<li>可重复（Repeatable），测试应当可在任何环境中重复通过。你应该能够在生产环境、质检环境中运行测试，也能够在无网络的列车上用笔记本电脑运行测试。如果测试不能在任意环境中重复，你就总会有个解释其失败的借口。当环境条件不具备时，你也会无法运行测试。</li>
+<li>自足验证（Self-Validating），测试应该有布尔值输出。无论是通过或失败，你不应该查看日志文件来确认测试是否通过。你不应该手工对比两个不同文本文件来确认测试是否通过。如果测试不能自足验证，对失败的判断就会变的依赖主观，而运行测试也需要更长的手工操作时间。</li>
+<li>及时（Timely），测试应及时编写。单元测试应该恰好在使其通过的生产代码之前编写。如果在编写生产代码之后编写测试，你会发现生产代码难以测试。你可能会认为某些生产代码本身难以测试。你可能不会去设计可测试的代码。</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>我们只是触及了这个话题的表面。实际上，我认为应该为整洁的测试写上一整本书。对于项目的健康度，测试和生产代码同等重要。或许测试更为重要，因为他保证和增强了生产代码的可拓展性、可维护性和可复用性。所以，保持测试整洁吧。让测试具有表达力并短小精悍。发明作为面向特定领域语言的测试 API ，帮助自己编写测试。</p>
+<p>如果你坐视测试腐坏，那么代码也会跟着腐坏。保持测试整洁吧。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>Kommentare:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                   
+                        <li>
+                            <a href="https://github.com/ChinaSunHZ/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="http://weibo.com/shz272119494" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://twitter.com/ChinaSunHZ" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://www.facebook.com/ChinaSunHZ" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://cn.linkedin.com/in/浩臻-孙-0208ba94" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="mailto:China.SunhZ@Gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <!--
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="http://7xjqw5.com1.z0.glb.clouddn.com/theme/js/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="http://7xjqw5.com1.z0.glb.clouddn.com/theme/js/bootstrap-3.3.6.min.js"></script>
+
+<!-- Gallery -->
+<script src="http://7xjqw5.com1.z0.glb.clouddn.com/theme/js/featherlight-1.3.5.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'spencer-dev-com';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>
