@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="作者：给立乐*出处：http://spencer-dev.com/2017/07/06/Clean Code - Chapter 10  类声明：本文采用以下协议进行授权： 自由转载-非商用-非衍生-保持署名|Creative Commons BY-NC-ND 3.0 ，转载请注明作者及出处。
+类本">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Spencer">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Clean Code - Chapter 10  类"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="给立乐*"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Clean Code - Chapter 10  类 - 给立乐*</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/bootstrap-3.3.6.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/font-awesome-4.6.3.min.css" rel="stylesheet" type="text/css">
+    
+    <!-- <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"> -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/google-font-1.css" rel="stylesheet" type="text/css">
+    
+    <!-- <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"> -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/google-font-2.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/featherlight-1.3.5.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-65158169-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">给立乐* Android 开发者</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/ChinaSunHZ/">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://7xjqw5.com1.z0.glb.clouddn.com/theme/image/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Clean Code - Chapter 10  类</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2017-07-11 01:23
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/Clean-Code/">#Clean Code</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>作者：给立乐*<br>出处：<a href="http://spencer-dev.com/2017/07/06/Clean Code - Chapter 10  类">http://spencer-dev.com/2017/07/06/Clean Code - Chapter 10  类</a><br>声明：本文采用以下协议进行授权： 自由转载-非商用-非衍生-保持署名|<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="external">Creative Commons BY-NC-ND 3.0</a> ，转载请注明作者及出处。</p>
+<h1 id="类"><a href="#类" class="headerlink" title="类"></a>类</h1><p>本书到目前为止一直在讨论如何编写良好的代码行和代码块。我们深入研究了函数的恰当构成，以及函数之间如何互相联系。不过，尽管讨论了这么多关于代码语句及由代码语句构成的函数的表达力，除非我们将注意力放到组织代码的更高层面，就始终不能得到整洁的代码。</p>
+<h2 id="类的组织"><a href="#类的组织" class="headerlink" title="类的组织"></a>类的组织</h2><p>遵循标准的 Java 约定，类应该从一组变量列表开始。如果有公共静态常量，应该先出现。然后是私有静态变量，以及私有实体变量。很少会有公共变量。</p>
+<p>公共函数应该跟在变量列表之后。我们喜欢把由某个公共函数调用的私有工具函数紧随在该公共函数后面。这符合了自顶向下原则，让程序读起来就像一片报纸文章。</p>
+<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p>我们喜欢保持变量和工具函数的私有性，但并不执着于此。有时，我们也需要用到保护变量（protected）或工具函数，好让测试可以访问到。对我们来说，测试说了算。若同一程序包内的某个测试需要调用一个函数或变量，我们就会将该函数或变量置为受保护或在整个程序包内可访问。然而，我们首先会想办法使之保有隐私。放松封装总是下策。</p>
+<h2 id="类应该短小"><a href="#类应该短小" class="headerlink" title="类应该短小"></a>类应该短小</h2><p>关于类的第一条规则是类应该短小。第二条规则是还要更短小。不，我们并不是要重弹“函数”一章的论调。就像函数一样，在设计类时，首要规条就是要更短小。和函数一样，马上有个问题出现，那就是“多小合适呢？”</p>
+<p>对于函数，我们通过计算代码行数衡量大小。对于类，我们采用不同的衡量方法，计算权责（responsibility）。</p>
+<p>类的名称应当描述其权责。实际上，命名正是帮助判断类的长度的第一个手段。如果无法为某个类以精确的命名，这个类大概就太长了。类名约含混，该类越有可能拥有过多权责。例如，如果类名中包括含义模糊的词，如 Processor 或 Manager 或 Super，这种现象往往说明有不恰当的权责聚集情况存在。</p>
+<p>我们也应该能够用大概 25 个单词简要描述一个类，且不用 “若（if）”、“与（and）”、“或（or）” 或者 “但（but）” 等词汇。</p>
+<h3 id="单一权责原则"><a href="#单一权责原则" class="headerlink" title="单一权责原则"></a>单一权责原则</h3><p>单一权责原则（SRP）认为，类或模块应有且只有一条加以修改的理由。该原则既给出了权责的定义，又是关于类的长度的指导方针。类只应有一个权责 - 只有一条修改的理由。鉴别权责（修改的理由）常常帮助我们在代码中认识到并创建出更好的抽象。</p>
+<p>SRP 是 OO 设计中最为重要的概念之一，也是较为容易理解和遵循的概念之一。奇怪的是 SRP 往往也是最容易被破坏的类的设计原则。经常会遇到做太多事的类。为什么呢？</p>
+<p>让软件能工作和让软件保持整洁，是两种截然不同的工作。我们中的大多数人脑力有限，只能更多的把精力放在让代码能工作上，而不是放在保持代码有组织和整洁上。这全然正确。分而治之，其在编程行为中的重要程度等同于在程序中的重要程度。</p>
+<p>问题是太多人在程序能工作时就以为万事大吉了。我们没能把思维转向有关代码组织和整洁的部分。我们直接转向下一个问题，而不是回头将臃肿的类切分为只有单一权责的去耦式单元。</p>
+<p>与此同时，许多开发者害怕数量巨大的短小单一目的类会导致难以一目了然抓住全局。他们认为，要搞清楚一件较大的工作如何完成，就得在类与类之间找来找去。</p>
+<p>然而，有大量短小类的系统并不比有少量庞大类的系统拥有更多移动部件，其数量大致相等。问题是：你是想把工具归置到有许多抽屉、每个抽屉中装有定义和标记良好的组建的工具箱中呢，还是想要放到少数几个能随便把所有东西扔进去的抽屉？</p>
+<p>每个达到一定规模的系统都会包括大量的逻辑和复杂性。管理这种复杂性的首要目标就是加以组织，以便开发者知道到哪儿能找到东西，并在某个特定时间只需要理解直接有关的复杂性。繁殖，拥有巨大、多目的类的系统，总是让我们在目前并不需要了解的一大堆东西中艰难跋涉。</p>
+<p>再强调一下：系统应该由许多短小的类而不是少量巨大的类组成。每个小类封装一个权责，只有一个修改的原因，并与少数其他类一起协同达成期望的系统行为。</p>
+<h3 id="内聚"><a href="#内聚" class="headerlink" title="内聚"></a>内聚</h3><p>类应该只有少量实体变量。类中的每个方法都应该操作一个或多个这种变量。通常而言，方法操作的变量越多，就越黏聚到类上。如果一个类中的每个变量都被每个方法所使用，则该类具有最大的内聚性。</p>
+<p>一般来说，创建这种极大化内聚类是既不可取也不可能的；另一方面，我们希望内聚性保持在较高的位置。内聚性高，意味着类中的方法和变量互相依赖、互相结合成一个逻辑整体。</p>
+<p>保持函数和参数列表短小的策略，有时会导致一组子集方法所用的实体变量数量增加。出现这种情况时，往往意味着至少有一个类要从大类中挣扎出来。你应当尝试将这些变量和方法拆分到两个或多个类中，让新的类更为内聚。</p>
+<h3 id="保持内聚性就会得到许多短小的类"><a href="#保持内聚性就会得到许多短小的类" class="headerlink" title="保持内聚性就会得到许多短小的类"></a>保持内聚性就会得到许多短小的类</h3><p>仅仅是将较大的函数切割为小函数，就将导致更多的类出现。想想看一个有许多变量的大函数。你想把该函数中某一小部分拆解成单独的函数。不过，你想要拆出来的代码使用了该函数中声明的四个变量。是否必要将这四个变量都作为参数传递到新函数中去呢？</p>
+<p>完全没必要！只要将四个变量提升为类的实体变量，完全无需传递任何变量就能拆解代码了。应该很容易将函数拆分为小块。</p>
+<p>可惜这也意味着类丧失了内聚性，因为堆积了越来越多只为少量函数共享而存在的实体变量。等一下！如果有些函数想要共享某些变量呢，为什么不让它们拥有自己的类呢？当类丧失了内聚性，就拆分它！</p>
+<p>所以，将大函数拆分为许多小函数，往往也是将类拆分为多个小类的时机。程序会更加有组织，也会拥有更为透明的结构。</p>
+<h2 id="为了修改而组织"><a href="#为了修改而组织" class="headerlink" title="为了修改而组织"></a>为了修改而组织</h2><p>对于多数系统，修改将一直持续。每处修改都让我们冒着系统其他部分不能如期望般工作的风险。在整洁的系统中，我们对类加以组织，降低修改的风险。</p>
+<p>代码清单中 Sql 类用来生成提供恰当元数据的 SQL 格式化字符串。这个类还没写完，所以暂时不支持 update 语句等 SQL 功能。当需要 Sql 类支持 update 语句时，我们就得“打开”这个类进行修改。打开类带来的问题是风险随之而来。对类的任何修改都有可能破坏类中的其他代码。必须全面重新测试。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 一个必须打开修改的类</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sql</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Sql</span><span class="params">(String table, Column[] columns)</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">create</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">insert</span><span class="params">(Object[] fields)</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">selectAll</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">fieldByKey</span><span class="params">(String keyColumn, String keyValue)</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">columnList</span><span class="params">(Column[] columns)</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">valuesList</span><span class="params">(Object[] fields, <span class="keyword">final</span> Column[] columns)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当增加一种新语句类型时，就要修改 Sql 类。改动单个语句类型时，也要进行修改，比如打算让 select 功能支持子查询。存在两个修改的理由，说明 Sql 类违反了 SRP 原则。</p>
+<p>可以从一条简单的组织性观点发现 SRP 的违反。Sql 的方法大纲显示，存在类似 selectWithCriteria 等只与 select 语句有关的私有方法。</p>
+<p>出现了只与类的一小部分有关的私有方法行为，意味着存在改进的空间。然而，展开行动的基本动因应该是系统的变动。若我们认为 Sql 类在逻辑上已具足，则无需担心对权责的拆分。如果在可预见的未来无需增加 update 功能，就不该去动 Sql 类。不过，一旦打开了类，就应当修正设计方案。</p>
+<p>下面的解决方式如何呢？Sql 类的每个接口方法都重构到从 Sql 类派生出来的类中了。注意那些私有方法，如 valueList，直接移到了需要它们的地方。公共私有行为被划分到独立的两个工具类 Where 和 ColumnList 中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 一组封闭类</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Sql</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Sql</span><span class="params">(String table, Column[] columns)</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">public</span> String <span class="title">generate</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CreateSql</span> <span class="keyword">extends</span> <span class="title">Sql</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CreateSql</span><span class="params">(String table, Column[] columns)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(table, columns);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">generate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SelectSql</span> <span class="keyword">extends</span> <span class="title">Sql</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SelectSql</span><span class="params">(String table, Column[] columns)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(table, columns);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">generate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">InsertSql</span> <span class="keyword">extends</span> <span class="title">Sql</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">InsertSql</span><span class="params">(String table, Column[] columns, Object[] fields)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(table, columns);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">generate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">valuesList</span><span class="params">(Object[] fields, <span class="keyword">final</span> Column[] columns)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SelectWithCriteriaSql</span> <span class="keyword">extends</span> <span class="title">Sql</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SelectWithCriteriaSql</span><span class="params">(</span></span></div><div class="line">            String table, Column[] columns, Criteria criteria) &#123;</div><div class="line">        <span class="keyword">super</span>(table, columns);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">generate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SelectWithMatchSql</span> <span class="keyword">extends</span> <span class="title">Sql</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SelectWithMatchSql</span><span class="params">(</span></span></div><div class="line">            String table, Column[] columns, Column column, String pattern) &#123;</div><div class="line">        <span class="keyword">super</span>(table, columns);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">generate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FindByKeySql</span> <span class="keyword">extends</span> <span class="title">Sql</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FindByKeySql</span><span class="params">(</span></span></div><div class="line">            String table, Column[] columns, String keyColumn, String keyValue) &#123;</div><div class="line">        <span class="keyword">super</span>(table, columns);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">generate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PreparedInsertSql</span> <span class="keyword">extends</span> <span class="title">Sql</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PreparedInsertSql</span><span class="params">(String table, Column[] columns)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(table, columns);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">generate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">placeholderList</span><span class="params">(Column[] columns)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Where</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Where</span><span class="params">(String criteria)</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">generate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ColumnList</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ColumnList</span><span class="params">(Column[] columns)</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">generate</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>每个类中的代码都变得极为简单。理解每个类花费的时间缩减到近乎为零。函数对其他函数造成毁坏的风险也变得几近于无。从测试的角度看，验证方案中每一处逻辑都成了极为简单的任务，因为类与类之间相互隔离了。</p>
+<p>当需要增加 update 语句时，现存类无需做任何修改，这也同等重要！我们在 Sql 类的新子类 UpdateSql 中构建 update 语句的逻辑。系统中的其他代码都不会因为这个修改而被破坏。</p>
+<p>重新架构的 Sql 逻辑百利而无一弊。它支持 SRP 。它也支持其他面向对象设计的关键原则，如开放-闭合原则（OCP）类应当对扩展开放，对修改封闭。通过子类化手段，重新架构的 Sql 类对添加新功能是开放的，而且可以同时不触及其他类。只要将 UpdateSql 类放置到位就行了。</p>
+<p>我们希望将系统打造成在添加或修改特性时尽可能少惹麻烦的架子。在理想系统中，我们通过扩展系统而非修改现有代码来添加新特性。</p>
+<h3 id="隔离修改"><a href="#隔离修改" class="headerlink" title="隔离修改"></a>隔离修改</h3><p>需求会改变，所以代码也会改变。具体类包含实现细节（代码），而抽象类则只呈现概念。依赖于具体细节的客户类，当细节改变时，就会有风险。我们可以借助接口和抽象类来隔离这些细节带来的影响。</p>
+<p>部件之间的解耦代表着系统中的元素互相隔离得很好。隔离也让对系统每个元素的理解变得更加容易。</p>
+<p>通过降低连接度，我们的类就遵循了另一条类设计原则，依赖倒置原则（Dependency Inversion Principle，DIP）。本质而言，DIP 认为类应当依赖于抽象而不是依赖于具体细节。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>Kommentare:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                   
+                        <li>
+                            <a href="https://github.com/ChinaSunHZ/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="http://weibo.com/shz272119494" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://twitter.com/ChinaSunHZ" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://www.facebook.com/ChinaSunHZ" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://cn.linkedin.com/in/浩臻-孙-0208ba94" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="mailto:China.SunhZ@Gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <!--
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="http://7xjqw5.com1.z0.glb.clouddn.com/theme/js/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="http://7xjqw5.com1.z0.glb.clouddn.com/theme/js/bootstrap-3.3.6.min.js"></script>
+
+<!-- Gallery -->
+<script src="http://7xjqw5.com1.z0.glb.clouddn.com/theme/js/featherlight-1.3.5.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'spencer-dev-com';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>
