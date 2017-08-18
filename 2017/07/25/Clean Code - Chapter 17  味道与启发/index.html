@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="作者：给立乐*出处：http://spencer-dev.com/2017/07/25/Clean Code - Chapter 17  味道与启发声明：本文采用以下协议进行授权： 自由转载-非商用-非衍生-保持署名|Creative Commons BY-NC-ND 3.0 ，转载请注明作者及出处">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Spencer">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Clean Code - Chapter 17  味道与启发"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="给立乐*"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Clean Code - Chapter 17  味道与启发 - 给立乐*</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/bootstrap-3.3.6.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/font-awesome-4.6.3.min.css" rel="stylesheet" type="text/css">
+    
+    <!-- <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"> -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/google-font-1.css" rel="stylesheet" type="text/css">
+    
+    <!-- <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"> -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/google-font-2.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="http://7xjqw5.com1.z0.glb.clouddn.com/theme/css/featherlight-1.3.5.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-65158169-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">给立乐* Android 开发者</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/ChinaSunHZ/">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://7xjqw5.com1.z0.glb.clouddn.com/theme/image/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Clean Code - Chapter 17  味道与启发</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2017-07-25 01:23
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/Clean-Code/">#Clean Code</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>作者：给立乐*<br>出处：<a href="http://spencer-dev.com/2017/07/25/Clean Code - Chapter 17  味道与启发">http://spencer-dev.com/2017/07/25/Clean Code - Chapter 17  味道与启发</a><br>声明：本文采用以下协议进行授权： 自由转载-非商用-非衍生-保持署名|<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="external">Creative Commons BY-NC-ND 3.0</a> ，转载请注明作者及出处。</p>
+<h1 id="味道与启发"><a href="#味道与启发" class="headerlink" title="味道与启发"></a>味道与启发</h1><p>Martin Fowler 在其妙书 Refectoring：Improving the Design of Existing Code 中指出了许多不同的“代码味道”。下面的清单包括很多 Martin 提出的味道，还添加了更多我自己提出，也包括我借以历练本业的其他珍宝与启发。</p>
+<p>我藉由遍览和重构几个不同的程序总结出这个清单。每次修改，我都问自己为什么要这样改，把修改的原因写下来。结果就是得到相当长的清单，给出在读代码时让我闻起来不舒服的味道。</p>
+<p>清单应按顺序阅读，并作为一种参考来使用。</p>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><h3 id="不恰当的信息"><a href="#不恰当的信息" class="headerlink" title="不恰当的信息"></a>不恰当的信息</h3><p>让注释传达本该更好地在源代码控制系统、问题追踪系统或任何其他记录系统中保存的信息，是不恰当的。例如，修改历史记录只会用大量果实而无趣的文本搞乱源代码文件。通常，作者、最后修改时间、SPR 数等元数据不该在注释中出现。注释只应该描述有关代码和设计的技术性信息。</p>
+<h3 id="废弃的注释"><a href="#废弃的注释" class="headerlink" title="废弃的注释"></a>废弃的注释</h3><p>过时、无关或不正确的注释就是废弃的注释。注释会很快过时。最好别编写将被废弃的注释。如果发现废弃注释，最好尽快更新或删除掉。废弃的注释会远离他们曾经描述的代码，变成代码中无关和误导的浮岛。</p>
+<h3 id="冗余注释"><a href="#冗余注释" class="headerlink" title="冗余注释"></a>冗余注释</h3><p>如果注释描述的是某种充分自我描述了的东西，那么注释就是多余的。注释应该谈及代码自身没提到的东西。</p>
+<h3 id="糟糕的注释"><a href="#糟糕的注释" class="headerlink" title="糟糕的注释"></a>糟糕的注释</h3><p>值得编写的注释，也值得好好写。如果要编写一条注释，就花时间保证写出最好的注释。字斟句酌。使用正确的语法和拼写。别嫌车、别画蛇添足、保持简洁。</p>
+<h3 id="注释掉的代码"><a href="#注释掉的代码" class="headerlink" title="注释掉的代码"></a>注释掉的代码</h3><p>看到被注释掉的代码会令我抓狂。谁知道它有多旧？谁知道它有没有意义？没人会删除它，因为大家都假设别人需要它或是有进一步计划。</p>
+<p>那样的代码就这样腐烂掉，随着时间推移，越来越与系统没关系。它调用不复存在的函数。它使用已经改名的变量。它遵循已经被废弃的约定。它污染了所属的模块，分散了想要读它的人的注意力。注释掉的代码纯属厌物。</p>
+<p>看到注释掉的代码，就删除它！别担心，源代码控制系统还会记得它。如果有人真的需要，可以签出较前的版本。别被它搞到死去活来。</p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><h3 id="需要多步才能实现的构建"><a href="#需要多步才能实现的构建" class="headerlink" title="需要多步才能实现的构建"></a>需要多步才能实现的构建</h3><p>构建系统应该是单步的小操作。不应该从源代码控制系统中一小点一小点签出代码。不应该需要一系列神秘指令或环境依赖脚本来构建单个元素。不应该四处寻找额外的小 Jar、XML 文件和其他系统所需的杂物。你应当能够用单个命令签出系统，并用单个指令构建它。</p>
+<h3 id="需要多步才能做到的测试"><a href="#需要多步才能做到的测试" class="headerlink" title="需要多步才能做到的测试"></a>需要多步才能做到的测试</h3><p>你应当能够发出单个指令就可以运行全部单元测试。能够运行全部单元测试是如此基础和重要，应该快速、轻易和直截了当的做到。</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="过多的参数"><a href="#过多的参数" class="headerlink" title="过多的参数"></a>过多的参数</h3><p>函数的参数数量应该少。没参数最好，一个次之，两个、三个再次之。三个以上的参数非常值得质疑，应该坚决避免。</p>
+<h3 id="输出参数"><a href="#输出参数" class="headerlink" title="输出参数"></a>输出参数</h3><p>输出参数违反直觉。读者期望参数用于输入而非输出。如果函数非要修改什么东西的状态不可，就修改它所在对象的状态好了。</p>
+<h3 id="标识参数"><a href="#标识参数" class="headerlink" title="标识参数"></a>标识参数</h3><p>布尔值参数大声宣告函数做了不止一件事。它们令人迷惑，应该消灭掉。</p>
+<h3 id="死函数"><a href="#死函数" class="headerlink" title="死函数"></a>死函数</h3><p>永不被调用的方法应该丢弃。保留死代码纯属浪费。别害怕删函数。记住，源代码控制系统还会记得它。</p>
+<h2 id="一般性问题"><a href="#一般性问题" class="headerlink" title="一般性问题"></a>一般性问题</h2><h3 id="一个源文件中存在多种语言"><a href="#一个源文件中存在多种语言" class="headerlink" title="一个源文件中存在多种语言"></a>一个源文件中存在多种语言</h3><p>当今的现代编程环境允许在单个源文件中存在多种不同语言。例如，Java 源文件可能还包括 XML、HTML、YAML、JavaDoc、英文、JavaScript 等语言。另例，JSP 文件可能还包括 HTML、Java、标签库语法、英文注释、Javadoc、XML、JavaScript 等。往好处说是令人迷惑，往坏处说就是粗心大意、驳杂不精。理想的源文件包括且只包括一种语言。现实上，我们可能会不得不使用多于一种语言。但应该尽力减少源文件中额外语言的数量和范围。</p>
+<h3 id="明显的行为未被实现"><a href="#明显的行为未被实现" class="headerlink" title="明显的行为未被实现"></a>明显的行为未被实现</h3><p>遵循“最小惊异原则”（The Principle of Least Surprise）[2]，函数或类应该实现其他程序员有理由期待的行为。例如，考虑一个将日期名称翻译为表示该日期的枚举的函数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Day day = DayDate.StringToDay(String dayName);</div></pre></td></tr></table></figure>
+<p>我们期望字符串 Monday 翻译为 Day.MONDAY。我们也期望常用缩写形式也能被翻译出来，我们还期待函数忽略大小写。如果明显的行为未被实现，读者和用户就不不能再依靠他们对函数名称的直觉。他们不再信任原作者，不得不阅读代码细节。</p>
+<h3 id="不正确的边界行为"><a href="#不正确的边界行为" class="headerlink" title="不正确的边界行为"></a>不正确的边界行为</h3><p>代码应该有正确行为，这话看似明白。问题是我们很少能明白正确行为有多复杂。开发者常常写出他们以为能工作的函数，信赖自己的直觉，而不是努力去证明代码在所有角落喝边界情形下真能工作。</p>
+<p>没什么可以代替谨小慎微。每种边界条件、每种极端情形、每个异常都代表了某种可能搞乱优雅而直白的算法的东西。别依赖直觉。追索每种边界条件，并编写测试。</p>
+<h3 id="忽略安全"><a href="#忽略安全" class="headerlink" title="忽略安全"></a>忽略安全</h3><p>切尔诺贝利核电站崩塌了，因为电厂经理一条又一条地忽略了安全机制。遵守安全就不便于做实验／结果就是实验未能运行，全世界都目睹首歌民用核电站大灾难。</p>
+<p>忽视安全相当危险。手工控制 serialVersionUID 可能有必要，但总会有风险。关闭某些编译器警告（或者全部警告！）可能有助于构建成功，但也存在陷于无穷无极的调试的风险。关闭失败测试、告诉自己过后再处理，这和假装刷信用卡不用还钱一样坏。</p>
+<h3 id="重复"><a href="#重复" class="headerlink" title="重复"></a>重复</h3><p>有一条本书提到的最重要的规则之一，你应该非常严肃地对待。实际上，每位编写有关软件设计的作者都提到这条规则。Dave Thomas 和 Andy Hunt 称之为 DRY 原则（Don‘t Repeat Yourself，别重复自己）。Kent Beck 将它列为极限编程核心原则之一，并称之为“一次，也只有一次”。Ron Jeffries 将这条规则列在第二位，地位只低于通过所有测试。</p>
+<p>每次看到重复代码，都代表遗漏了抽象。重复的代码可能成为子程序或干脆是另一个类。将重复代码叠放进类似的抽象，增加了你的设计语言的词汇量。其他程序员可以用到你创建的抽象设施。编码变得越来越快，错误越来越少，因为你提升了抽象层级。</p>
+<p>重复最明显的形态是你不短看到明显一样的代码，就像某位程序员疯狂用鼠标不断复制粘贴代码。可以用单一方法来代替之。</p>
+<p>较隐蔽的形态是在不同模块中不断重复出现、检测同一组条件的 switch / case 或 if / else 链。可以用多态来代替之。</p>
+<p>更隐蔽的形态是采用类似算法但具体代码行不同的模块。这也是一种重复，可以使用模版方法模式或策略模式来修正。</p>
+<p>的确，过去 15 年内出现的多数设计模式都是消除重复的有名手段。考德范式（Codd Normal Forms）是消除数据库规划中的重复的策略。OO 自身也是组织模块和消除重复的策略。毫不出奇，结构化编程也是。</p>
+<p>重点已经在那里了。尽可能找到并消除重复。</p>
+<h3 id="在错误的抽象层级上的代码"><a href="#在错误的抽象层级上的代码" class="headerlink" title="在错误的抽象层级上的代码"></a>在错误的抽象层级上的代码</h3><p>创建分离较高层级一般性概念与较低层级细节概念的抽象模型，这很重要。有时，我们创建抽象类来容纳较高层级概念，创建派生类来容纳较低层次概念。这样做的时候，需要确保分离完整。所有较低层级概念放在派生类中，所有较高层级概念放在基类中。</p>
+<p>例如，至于细节实现有关常量、变量或工具函数不应该出现在基类中。基类应该对这些东西一无所知。</p>
+<p>这条规则对于源文件、组件和模块也适用。良好的软件设计要求分离位于不同层级的概念，将它们放到不同容器中。有时，这些容器是基类或派生类，有时是源文件、组件或模块。无论哪种，分离都要完整。较低层级概念和较高层级概念不该混杂在一起。</p>
+<p>要点是你不能就错误放置的抽象模型撒谎。孤立抽象是软件开发者最难做到的事之一，而一旦做错也没有快捷的修复手段。</p>
+<h3 id="基类依赖于派生类"><a href="#基类依赖于派生类" class="headerlink" title="基类依赖于派生类"></a>基类依赖于派生类</h3><p>将概念分解到基类和派生类的最普遍的原因是较高层级基类可以不依赖于较低层级派生类概念。这样，如果看到基类提到派生类名称，就可能发现了问题。通常来说，基类对派生类应该一无所知。</p>
+<p>当然也有例外。有时派生类数量严格固定，而基类中拥有在派生类之间选择的代码。在有限状态机的实现中这种情形很多见。然而，在那种情况下，派生类和基类紧密耦合，总是在同一个 jar 文件中部署。一般情况下，我们会想要把派生类和基类部署到不同的 jar 文件中。</p>
+<p>将派生类和基类部署到不同的 jar 文件中，确保基类 jar 文件对派生类 jar 文件的内容一无所知，我们就能把系统部署为分散和独立的组件。修改了这些组件时，不必重新部署基组件就能部署它们。这意味着修改产生的影响极大地降低了，而维护系统也变得更加简单。</p>
+<h3 id="信息过多"><a href="#信息过多" class="headerlink" title="信息过多"></a>信息过多</h3><p>设计良好的模块有着非常小的接口，让你能事半功倍。设计低劣的模块有着广阔、深入的接口，你不得不事倍功半。设计良好的接口并不提供许多需要依赖的函数，所以耦合度也较低。设计低劣的接口提供大量你必须调用的函数，耦合度较高。</p>
+<p>优秀的软件开发人员学会限制类或模块中暴露的接口数量。类中的方法越少越好。函数知道的变量越少越好。类拥有的实体变量越少越好。</p>
+<p>隐藏你的数据。隐藏你的工具函数。隐藏你的常量和你的临时变量。不要创建拥有大量方法或大量实体变量的类。不要为子类创建大量受保护变量和函数。尽力保持接口紧凑。通过限制信息来控制耦合度。</p>
+<h3 id="死代码"><a href="#死代码" class="headerlink" title="死代码"></a>死代码</h3><p>死代码就是不执行的代码。可以在检查不会发生的条件的 if 语句中找到。可以在从不抛出异常的 try 语句的 catch 块中找到。可以在从不被调用的小工具方法中找到，也可以在永不发生的 switch / case 条件中找到。</p>
+<p>死代码的问题是过不久它就会发出臭味。时间越久，味道就越酸臭。这是因为，在设计改变时，死代码不会随之更新。它还能通过编译，但不会遵循较新的约定或规则。它编写的时候，系统是另一番模样。如果你找到死代码，就体面地埋葬它，将它从系统中删除掉。</p>
+<h3 id="垂直分隔"><a href="#垂直分隔" class="headerlink" title="垂直分隔"></a>垂直分隔</h3><p>变量和函数应该在靠近被使用的地方定义。本地变量应该正好在其首次被使用的位置上面生命，垂直距离要短。本地变量不该在其被使用之处几百行以外声明。</p>
+<p>私有函数应该刚好在其首次被使用的位置下面定义。私有函数属于整个类，但我们还是要限制调用和定义之间的垂直距离。找个私有函数，应该只是从其首次被使用处往下看一点那么简单。</p>
+<h3 id="前后不一致"><a href="#前后不一致" class="headerlink" title="前后不一致"></a>前后不一致</h3><p>从一而终。这可以追溯到最小惊异原则。小心选择约定，一旦选中，就小心持续遵循。</p>
+<p>如果在特定函数中用名为 response 的变量来持有 HttpServletResponse 对象，则在其他用到 HttpServletResponse 对象的函数中也用同样的变量名。如果将某个方法命名为 processVerificationRequest，则给处理其他请求类型的方法取类似的名字，例如 processDeletionRequest。</p>
+<p>如此简单的前后一致，一旦坚决贯彻，就能让代码更加易于阅读和修改。</p>
+<h3 id="混淆视听"><a href="#混淆视听" class="headerlink" title="混淆视听"></a>混淆视听</h3><p>没有实现的默认构造器有何用处呢？它只会用无意义的杂碎搞乱对代码的理解。没有用到的变量，从不调用的函数，没有信息量的注释，等等，这些都是应该移除的废物。保持源文件整洁，良好地组织，不被搞乱。</p>
+<h3 id="人为耦合"><a href="#人为耦合" class="headerlink" title="人为耦合"></a>人为耦合</h3><p>不互相依赖的东西不该耦合。例如，普通的 enum 不应该在特殊类中包括，因为这样一来应用程序就要了解这些更为特殊的类。对于在特殊类中声明一般目的的 static 函数也是如此。</p>
+<p>一般来说，人为耦合是指两个没有直接目的之间的模块的耦合。其根源是将变量、常量或函数不恰当地放在临时方便的位置。这是种漫不经心地偷懒行为。</p>
+<p>花点时间研究应该在什么地方生命函数、常量和变量。不要为了方便随手放置，然后置之不理。</p>
+<h3 id="特性依恋"><a href="#特性依恋" class="headerlink" title="特性依恋"></a>特性依恋</h3><p>这是 Martin Fowler 提出的代码味道之一。类的方法只应对其所属类中的变量和函数感兴趣，不该垂青其他类中的变量和函数。当方法通过某个其他对象的访问器和修改器来操作该对象内部数据，则它就依恋于该对象所属类的范围。它期望自己在那个类里面，这样就能直接访问它操作的变量。</p>
+<h3 id="选择算子参数"><a href="#选择算子参数" class="headerlink" title="选择算子参数"></a>选择算子参数</h3><p>没有什么比在函数调用末尾遇到一个 false 参数更为可憎的事情了。那个 false 是什么意思？如果它是 true，会有什么变化吗？不仅是一个选择算子（selector）参数的目的难以记住，每个选择算子参数只是一种避免把大函数切分为多个小函数的偷懒做法。</p>
+<p>当然，选择算子不一定是 boolean 类型。可能是枚举元素、整数或任何一种用于选择函数行为的参数。使用多个函数，通常优于向单个函数传递某些代码来选择函数行为。</p>
+<h3 id="晦涩的意图"><a href="#晦涩的意图" class="headerlink" title="晦涩的意图"></a>晦涩的意图</h3><p>代码要尽可能具有表达力。联排表达式、匈牙利语标记法和魔术数都遮蔽了作者的意图。</p>
+<h3 id="位置错误的权责"><a href="#位置错误的权责" class="headerlink" title="位置错误的权责"></a>位置错误的权责</h3><p>软件开发者做出的最重要决定之一就是在那里放代码。例如，PI 常量放在何处？是该在 Math 类中吗？还活着应该属于 Trigonometry 类？还是在 Circle 类？</p>
+<p>最小惊异原则在这里起作用了。代码应该放在读者自然而然期待它所在的地方。PI 常量应该出现在声明三角函数的地方。</p>
+<p>OVERTIME_RATE 常量应该在 HourlyPayCalculator 类中声明。</p>
+<p>有时，我们“聪明”地知道在何处放置功能代码。我们会放在自己方便而读者不能随直觉找到的地方。例如，也许我们需要打印出某个雇员的总工作时间的报表。我们可以在打印报表的代码中做工作时间统计，或者我们可以在接受工作时间卡的代码中保留一份工作时间记录。</p>
+<p>做这个决定的途径之一是看函数名称。比如，报表模块有个名为 getTotalHours 的函数。接受时间卡的模块有一个 saveTimeCard 函数。顾名思义，那个名称暗示了函数会计算总时间呢？答案显而易见。</p>
+<p>显然，对于总时间应该在接受时间卡的时候计算，而不是在打印报表时计算，这里面有些性能上的考量。没问题，但函数名称应该反映这种考虑。例如，应该在时间卡模块中有个 computeRunningTotalOfHours 函数。</p>
+<h3 id="不恰当的静态方法"><a href="#不恰当的静态方法" class="headerlink" title="不恰当的静态方法"></a>不恰当的静态方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Math.max(<span class="keyword">double</span> a, <span class="keyword">double</span> b);</div></pre></td></tr></table></figure>
+<p>是个良好的静态方法。它并不在单个实体上操作。的确，不得不写 new Math().max(a, b) 甚至 a.max(b) 实在愚蠢。那个 max 用到的全部数据来自其他两个参数，而不是来自“所属”对象。而且，我们也没有机会用到 Math.max 的多态特性。</p>
+<p>不过，我们有时也编写不该是静态的静态方法。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">HourlyPayCalculator.calculatePay(employee, overtimeRate);</div></pre></td></tr></table></figure>
+<p>这看起来像个有道理的 static 函数。它并不在任何特定对象上操作，而且从参数重获得全部数据。然而，我们却有理由希望这个函数是多态的。我们可能希望为计算每小时支付工资实现几种不同的算法，例如 OvertimeHourlyPayCalculator 和 StraightTimeHourlyPayCalculator。所以，在这种情况下，该函数就不该是静态的。它应该是 Employee 的非静态成员函数。</p>
+<p>通常应该倾向于选择用非静态方法。如果有疑问，就使用非静态函数。如果的确需要静态函数，就确保没机会让它有多态行为。</p>
+<h3 id="使用解释性变量"><a href="#使用解释性变量" class="headerlink" title="使用解释性变量"></a>使用解释性变量</h3><p>Kent Beck 在其巨著 Smalltalk Base Practice Patterns 和另一部巨著 Implementation Patterns 中都写到这个。让程序可读的最有力方法之一就是将计算过程打散成在用有意义的单词命名的变量中放置的中间值。</p>
+<p>这事很难做过火。解释性变量多比少好。只要把计算过程打散成一系列良好命名的中间值，不透明的模块就会突然变得透明，这很值得注意。</p>
+<h3 id="函数名称应该表达其行为"><a href="#函数名称应该表达其行为" class="headerlink" title="函数名称应该表达其行为"></a>函数名称应该表达其行为</h3><p>看看这行代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Date newDate = date.add(<span class="number">5</span>);</div></pre></td></tr></table></figure>
+<p>你会期待它向日期添加 5 天吗？或者是 5 个星期？5 个小时？该 date 实体会变化吗？或者该函数只是返回一个新的 Date 实体，并不改动旧的？从函数调用中看不出函数的行为。</p>
+<p>如果函数向日期添加 5 天并且修改改日期，就该命名为 addDaysTo 或 increaseByDays。如果函数返回一个表示 5 天后的日期，而不修改日期实体，就该叫做 daysLaster 或 daysSince。</p>
+<p>如果你必须查看函数的实现（或文档）才知道它是做什么的，就该换个更好的函数名，或者重新安排功能代码，放到有较好名称的函数中。</p>
+<h3 id="理解算法"><a href="#理解算法" class="headerlink" title="理解算法"></a>理解算法</h3><p>好多可笑的代码的出现，是因为人们梅花时间去理解算法。他们硬塞进足够多的 if 语句和标识，从不真正停下来考虑发生了什么，勉强让系统能工作。</p>
+<p>编程常常是一种探险。你以为自己知道某事的正确算法，然后就卷起袖子瞎干一气，搞到“可以工作”为止。你怎么知道它“可以工作”？因为它通过了你能想到的单元测试。这种做法没错。实际上，这也是让函数按你设想的方式执行的唯一路径。不过，”可以工作“周围的引号不能一直保留。</p>
+<p>在你认为自己完成某个函数之前，确认自己理解了它是怎么工作的。通过全部测试还不够好。你必须知道解决方案是正确的。</p>
+<p>获得这种知识和理解的最好途径，往往是重构函数，得到某种整洁而足具表达力、清楚呈示如何工作的东西。</p>
+<h3 id="把逻辑依赖改为物理依赖"><a href="#把逻辑依赖改为物理依赖" class="headerlink" title="把逻辑依赖改为物理依赖"></a>把逻辑依赖改为物理依赖</h3><p>如果某个模块依赖另一个模块，依赖就该是物理上的而不是逻辑上的。依赖者模块不应该对被依赖者模块有假定（换言之，逻辑依赖）。它应当明确地询问后者全部信息。</p>
+<h3 id="用多态代替-if-else-或-switch-case"><a href="#用多态代替-if-else-或-switch-case" class="headerlink" title="用多态代替 if/else 或 switch/case"></a>用多态代替 if/else 或 switch/case</h3><p>有了第 6 章谈及的主题，这条建议看似奇怪。在那章中，我提出在新添加函数甚于添加新类型的系统中，switch 语句是恰当的。</p>
+<p>首先，多数人使用 switch 语句，因为它是最直截了当又有力的方案，而不是因为它适合当前情形。这给我们的启发是在使用 switch 之前，先考虑使用多态。</p>
+<p>其次，函数变化甚于类型变化的情形相对罕见。每个 switch 语句都值得怀疑。</p>
+<p>我使用所谓“单个 switch”规则：对于给定的选择类型，不应有多余一个 switch 语句。在那个 switch 语句中的多个 case，必须创建多态对象，取代系统中其他类似 switch 语句。</p>
+<h3 id="遵循标准约定"><a href="#遵循标准约定" class="headerlink" title="遵循标准约定"></a>遵循标准约定</h3><p>每个团队都应遵循基于通用行业规范的一套编码标准。编码标准应制定诸如在何处声明实体变量，如何命名类、方法和变量，在何处放置括号，等等。团队不应用文档描述这些约定，因为代码本身提供了范例。</p>
+<p>团队中每个成员都应遵循这些约定。这意味着每个团队成员都必须成熟到能了解只要全体同意在何处放置括号，那么在哪里放置都无关紧要。</p>
+<h3 id="用命名常量代替魔术数"><a href="#用命名常量代替魔术数" class="headerlink" title="用命名常量代替魔术数"></a>用命名常量代替魔术数</h3><p>魔术数不仅是说数字。它泛指任何不能自我描述的符号。</p>
+<p>若有些常量与非常具有自我解释能力的代码协同工作时，如此易于识别，也就不必总是需要命名常量来隐藏了。</p>
+<h3 id="准确"><a href="#准确" class="headerlink" title="准确"></a>准确</h3><p>期望某个查询的第一次匹配就是唯一匹配可能过于天真。用浮点数表示货币几近于犯罪。因为你不想做并发更新就避免使用锁或事务管理往好处说也是一种懒惰行为。在可以用 List 的时候非要把变量声明为 ArrayList 就过分拘束了。把所有变量设置为 protected 却不够自律。</p>
+<p>在代码中做决定时，确认自己足够准确。明确自己为何要这么做，如果遇到异常情况如何处理。别懒得理会决定的准确性。如果你打算调用可能返回 null 的函数，就确认自己检查了 null 值。如果查询你认为是数据库中唯一的记录，就确保代码检查不存在其他记录。如果要处理货币数据，使用整数，就要检查是否恰当的处理了四舍五入。如果有可能并发，就确认你是否实现了某种锁定机制。</p>
+<p>代码中的含糊和不准确要么是意见不同的结果，要么源于懒惰。无论原因是什么，都要消除。</p>
+<h3 id="结构甚于约定"><a href="#结构甚于约定" class="headerlink" title="结构甚于约定"></a>结构甚于约定</h3><p>坚守结构甚于约定的设计决策。命名约定很好，但却次于强制性的结构。例如，用到良好命名的枚举的 switch/case 要弱于拥有抽象方法的基类。没人会强迫每次都以同样的方式实现 switch/case 语句，但基类却让具体类必须实现所有抽象方法。</p>
+<h3 id="封装条件"><a href="#封装条件" class="headerlink" title="封装条件"></a>封装条件</h3><p>如果没有 if 或 while 语句的上下文，布尔逻辑就难以理解。应该把解释了条件意图的函数抽离出来。</p>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(shouldBeDeleted(timer))</div></pre></td></tr></table></figure>
+<p>要好于：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(timer.hasExpired() &amp;&amp; !timer.isRecurrent())</div></pre></td></tr></table></figure>
+<h3 id="避免否定性条件"><a href="#避免否定性条件" class="headerlink" title="避免否定性条件"></a>避免否定性条件</h3><p>否定式要比肯定式难明白一些。所以，尽可能将条件表示为肯定形式。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(buffer.shouldCompact())</div></pre></td></tr></table></figure>
+<p>要好于：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(!buffer.shouldNotCompact())</div></pre></td></tr></table></figure>
+<h3 id="函数只该做一件事"><a href="#函数只该做一件事" class="headerlink" title="函数只该做一件事"></a>函数只该做一件事</h3><p>编写执行一系列操作的包括多段代码的函数常常是诱人的。这类函数做了不止一件事，应该转换为多个更小的函数，每个只做一件事。</p>
+<h3 id="遮蔽时序耦合"><a href="#遮蔽时序耦合" class="headerlink" title="遮蔽时序耦合"></a>遮蔽时序耦合</h3><p>常常有必要使用时序耦合，但你不应该掩蔽它。排列函数参数，好让它们被调用的次序显而易见。看下列代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MoogDiver</span> </span>&#123;</div><div class="line">    Gradient gradient;</div><div class="line">    List&lt;spline&gt; splines;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dive</span><span class="params">(String reason)</span> </span>&#123;</div><div class="line">        saturateGradient();</div><div class="line">        reticulateSplines();</div><div class="line">        diveForMoog(reason);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>三个函数的次序很重要。但代码并没有强制这种时序耦合。其他程序员可以在调用 saturateGradient 之前调用 reticulateSplines，从而导致抛出 UnsaturatedGradientException 异常。</p>
+<p>更好的方式是：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MoogDiver</span> </span>&#123;</div><div class="line">    Gradient gradient;</div><div class="line">    List&lt;spline&gt; splines;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dive</span><span class="params">(String reason)</span> </span>&#123;</div><div class="line">        Gradient gradient = saturateGradient();</div><div class="line">        List&lt;Spline&gt; splines = reticulateSplines(gradient);</div><div class="line">        diveForMoog(splines, reason);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样就通过创建顺序队列暴露了时序耦合。每个函数都产生出下一个函数所需的结果，这样一来就没有理由不按顺序调用了。</p>
+<p>你可能会抱怨着增加了函数的复杂度，没错，不过这点额外的复杂度却暴露了该种情况真正的时序复杂性。</p>
+<p>注意我保留了那些实体变量。我假设类中的私有方法可能会用到它们。即便如此，我还是希望参数能让时序耦合变得可见。</p>
+<h3 id="别随意"><a href="#别随意" class="headerlink" title="别随意"></a>别随意</h3><p>构建代码需要理由，而且理由应与代码结构相契合。如果结构显得太随意，其他人就会想修改它。如果结构自始至终保持一致，其他人就会使用它，并且遵守其约定。</p>
+<h3 id="封装边界条件"><a href="#封装边界条件" class="headerlink" title="封装边界条件"></a>封装边界条件</h3><p>边界条件难以追踪。把处理边界条件的代码集中到一处，不要散落于代码中。我们不想见到四处散落的 +1 和 -1 字样。</p>
+<h3 id="函数应该只在一个抽象层级上"><a href="#函数应该只在一个抽象层级上" class="headerlink" title="函数应该只在一个抽象层级上"></a>函数应该只在一个抽象层级上</h3><p>函数中的语句应该在同一抽象层级上，该层级应该是函数名所示操作的下一层。这可能是最难理解和遵循的启发。尽管概念足够直白，人们还是很容易混淆抽象层级。</p>
+<h3 id="在较高层级放置可配置数据"><a href="#在较高层级放置可配置数据" class="headerlink" title="在较高层级放置可配置数据"></a>在较高层级放置可配置数据</h3><p>如果你有个已知并该在较高抽象层级的默认常量或配置值，不要将它埋藏到较低层级的函数中。把它作为较高层级函数调用较低层级函数时的一个参数。</p>
+<h3 id="避免传递浏览"><a href="#避免传递浏览" class="headerlink" title="避免传递浏览"></a>避免传递浏览</h3><p>通常我们不想让某个模块了解太多其协作者的信息。更具体地说，如果 A 与 B 协作，B 与 C 协作，我们不想让使用 A 的模块了解 C 的信息。（例如，我们不想写类似 a.getB().getC().doSomething() 的代码。）</p>
+<p>这就是所谓的墨忒耳律。The Pragmatic Programmers (中译版 《程序员修炼之道》) 称之为“编写害羞代码”。两者都归结为确保模块只了解其直接协作者，不了解整个系统的浏览图。</p>
+<p>如果有多个模块使用类似 a.getB().getC() 这样的语句形式，就难以修改设计和架构，在 B 和 C 之间插进一个 Q。你得找到 a.getB(),getC() 出现的所有地方，并将其改为 a.getB().getQ().getC()。系统就变得缺乏柔韧性。太多的模块了解了太多有关架构的信息。</p>
+<p>正确的做法是让直接协作者提供所需的全部服务。不必逛遍系统的对象全图，搜寻我们要调用的方法。只要简单地说：<em>myCollaborator.doSomething();</em></p>
+<h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2><h3 id="通过使用通配符避免过长的清单导入"><a href="#通过使用通配符避免过长的清单导入" class="headerlink" title="通过使用通配符避免过长的清单导入"></a>通过使用通配符避免过长的清单导入</h3><p>如果使用了来自同一程序包的两个或多个类，就用一下语句导入整个包:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="keyword">package</span>.*;</div></pre></td></tr></table></figure>
+<p>过长的导入清单令读者望而却步。我们不想用 80 行导入语句搞乱模块顶部位置。我们想要导入语句简约的列出我们要使用的包。</p>
+<p>指定导入包是种硬依赖，而通过通配符导入则不是。如果你具体指定导入了某个类，该类必须存在。但如果你用通配符导入某个包，则不需要存在具体的类。导入语句只是在搜寻名称时把这个包列入查找路径。所以，这种导入并未构成真正的依赖，也就让我们的模块较少耦合。</p>
+<p>有时，长长的具体导入清单也会游泳。例如，如果你在处理遗留下来的代码，想要找出需要为那些类构造替身类和占位代码，就可以遍历导入清单，找出这些类的真名，再恰当地放置占位代码。不过，这种用法很罕见。而且，多数现代 IDE 允许你用一个命令就把通配符导入语句转换为指定导入清单。所以，即便在处理遗留代码时，也最好用通配符导入。</p>
+<p>通配符导入有时会导致名称冲突和歧义。两个同名但位于不同包中的类需要指名导入，或至少在使用时指定名称。这种情形的确讨厌，不过很罕见，所以使用通配符导入仍优于指定名称导入。</p>
+<h3 id="不要继承常量"><a href="#不要继承常量" class="headerlink" title="不要继承常量"></a>不要继承常量</h3><p>某个程序在接口中放了些常量，再通过继承结构来访问这些常量。不要这样做！</p>
+<h3 id="常量-vs-枚举"><a href="#常量-vs-枚举" class="headerlink" title="常量 vs. 枚举"></a>常量 vs. 枚举</h3><p>现在 enum 已经加入 Java 语言，放心用吧。别再做那个 public static final int 老花招。那样做 int 的意义就丧失了，而用 enum 则不然，因为它们隶属有名称的枚举。</p>
+<p>而且，仔细研究 enum 的语法。它们拥有方法和字段，从而成为能比 int 提供更多表达力和灵活性的强有力工具。</p>
+<h2 id="名称"><a href="#名称" class="headerlink" title="名称"></a>名称</h2><h3 id="采用描述性名称"><a href="#采用描述性名称" class="headerlink" title="采用描述性名称"></a>采用描述性名称</h3><p>不要太快取名。确认名称具有描述性。记住，事物的意义随着软件的演化而变化，所以，要经常性地重新估量名称是否恰当。</p>
+<p>这不仅是一条“感觉良好式”建议。软件中的名称对于软件可读性有 90% 的作用。你要花时间明智地取名，保持名称有关。名称太重要了，不可随意对待。</p>
+<p>仔细取好的名称的威力在于，它用描述性信息覆盖了代码。这种信息覆盖设定了读者对于模块中其他函数行为的期待。</p>
+<h3 id="名称应与抽象层级相符"><a href="#名称应与抽象层级相符" class="headerlink" title="名称应与抽象层级相符"></a>名称应与抽象层级相符</h3><p>不要取沟通实现的名称；取反应类或函数抽象层级的名称。这样做不容易。人们擅长于混杂抽象层级。每次浏览代码，你总会发现有些变量的名称层级太低。你应当趁机为之改名。要让代码可读，需要持续不断的改进。</p>
+<h3 id="尽可能使用标准命名法"><a href="#尽可能使用标准命名法" class="headerlink" title="尽可能使用标准命名法"></a>尽可能使用标准命名法</h3><p>如果名称基于既存约定或用法，就比较易于理解。例如，如果你采用油漆工模式，就该在给油漆类命名时用上 Decorator 字样。例如，AutoHangupModemDecorator 可能是给某个 Modem 类刷上在会话结束时自动挂机的能力的类的名称。</p>
+<p>模式只是标准的一种。例如，在 Java 中，将对象转换为字符串的函数通常命名为 toString。最好是遵循这些约定，而不是自己创造命名法。</p>
+<p>对于特定项目，开发团队常常发明自己的命名标准系统。Eric Evans 称之为项目的共同语言。代码应该使用来自这种语言的术语。简言之，具有与项目有关的特定意义的名称用的越多，读者就越容易明白你的代码是做什么的。</p>
+<h3 id="无歧义的名称"><a href="#无歧义的名称" class="headerlink" title="无歧义的名称"></a>无歧义的名称</h3><p>选用不会混淆函数或变量意义的名称。</p>
+<h3 id="为较大作用范围选用较长名称"><a href="#为较大作用范围选用较长名称" class="headerlink" title="为较大作用范围选用较长名称"></a>为较大作用范围选用较长名称</h3><p>名称长度应与作用范围的广泛度相关。对于较小的作用范围，可以用很短的名称，而对于较大作用范围就该用较长的名称。</p>
+<p>另一方面，在较长距离上，使用段名称的变量和函数就会丧失其含义。名称的作用范围越大，函数名就该越长、越准确。</p>
+<h3 id="避免编码"><a href="#避免编码" class="headerlink" title="避免编码"></a>避免编码</h3><p>不该在名称中包括类型或作用范围信息。在如今的开发环境中，m<em> 或 f 之类前缀完全无用。类似 vis</em> （表示图形系统）之类的项目或子系统名称也属多余。当今的开发环境不用纠缠于名称也能提供这些信息。不要用匈牙利语命名法污染你的名称。</p>
+<h3 id="名称应该说明副作用"><a href="#名称应该说明副作用" class="headerlink" title="名称应该说明副作用"></a>名称应该说明副作用</h3><p>名称应该说明函数、变量或类的一切信息。不要用名称遮蔽副作用。不要用简单的动词来描述做了不止一个简单动作的函数。</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><h3 id="测试不足"><a href="#测试不足" class="headerlink" title="测试不足"></a>测试不足</h3><p>一套测试中应该有多少个测试？不幸的是，许多程序员的衡量标准是“看起来够了”。一套测试应该测到所有可能失败的东西。只要还有没被测试探测过的条件，或是还没有被验证过的计算，测试就还不够。</p>
+<h3 id="使用覆盖率工具"><a href="#使用覆盖率工具" class="headerlink" title="使用覆盖率工具"></a>使用覆盖率工具</h3><p>覆盖率工具能汇报你测试策略中的缺口。使用覆盖率工具能更容易找到测试不足的模块、类和函数。多数 IDE 都能够给出直观的指示，用绿色标记测试覆盖了的代码行，而未覆盖的代码行则是红色。这样就能又快又容易地找到尚未检测过的 if 或 catch 语句。</p>
+<h3 id="别略过小测试"><a href="#别略过小测试" class="headerlink" title="别略过小测试"></a>别略过小测试</h3><p>小测试易于编写，其文档上的价值高于编写成本。</p>
+<h3 id="被忽略的测试就是对不确定事物的疑问"><a href="#被忽略的测试就是对不确定事物的疑问" class="headerlink" title="被忽略的测试就是对不确定事物的疑问"></a>被忽略的测试就是对不确定事物的疑问</h3><p>有时，我们会因为需求不明而不能确定某个行为细节。可以用注释掉的测试或用 @Ignore 标记的测试来表达我们对于需求的疑问。使用哪种方式，取决于该不确定性所关涉代码是否要编译。</p>
+<h3 id="测试边界条件"><a href="#测试边界条件" class="headerlink" title="测试边界条件"></a>测试边界条件</h3><p>特别注意测试边界条件。算法的中间部分正确但边界判断错误的情形很常见。</p>
+<h3 id="全面测试相近的缺陷"><a href="#全面测试相近的缺陷" class="headerlink" title="全面测试相近的缺陷"></a>全面测试相近的缺陷</h3><p>缺陷趋向于扎堆。在某个函数中发现一个缺陷时，最好全面测试那个函数。你可能会发现缺陷不止一个。</p>
+<h3 id="测试失败的模式有启发性"><a href="#测试失败的模式有启发性" class="headerlink" title="测试失败的模式有启发性"></a>测试失败的模式有启发性</h3><p>有时，你可以通过找到测试用例失败的模式来诊断问题的所在。这也是尽可能编写足够完整的测试用例的理由之一。完整的测试用例，按合理的顺序排列，能暴露出问题。</p>
+<h3 id="测试覆盖率的模式有启发性"><a href="#测试覆盖率的模式有启发性" class="headerlink" title="测试覆盖率的模式有启发性"></a>测试覆盖率的模式有启发性</h3><p>查看被或未被已通过的测试执行的代码，往往能发现失败的测试为何失败的线索。</p>
+<h3 id="测试应该快速"><a href="#测试应该快速" class="headerlink" title="测试应该快速"></a>测试应该快速</h3><p>慢速的测试是不会被运行的测试。时间一紧，较慢的测试就会被摘掉。所以，竭尽所能让测试够快。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>这份启发与味道的清单很难说已完备无缺。我不能确定这样一份清单会不会完备无缺。但或许完整性不该是目标，因为该清单确实给出了一套价值体系。</p>
+<p>那套价值体系才该是目标，也是本书的主题所在。整洁代码并非遵循一套规则写就。学习一些列启发并不足以让你成为软件匠人。专业性和技艺来自于驱动规程的价值观。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>Comments:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                   
+                        <li>
+                            <a href="https://github.com/ChinaSunHZ/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="http://weibo.com/shz272119494" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://twitter.com/ChinaSunHZ" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://www.facebook.com/ChinaSunHZ" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://cn.linkedin.com/in/浩臻-孙-0208ba94" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="mailto:China.SunhZ@Gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <!--
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="http://7xjqw5.com1.z0.glb.clouddn.com/theme/js/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="http://7xjqw5.com1.z0.glb.clouddn.com/theme/js/bootstrap-3.3.6.min.js"></script>
+
+<!-- Gallery -->
+<script src="http://7xjqw5.com1.z0.glb.clouddn.com/theme/js/featherlight-1.3.5.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'spencer-dev-com';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>
